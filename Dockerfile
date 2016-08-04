@@ -9,7 +9,7 @@ RUN mkdir /opt/Download
 RUN yum -y install libXext libXt libXmu
 RUN wget -O /opt/Download/mcr.zip http://uk.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip
 RUN mkdir /opt/Download/mcr
-RUN unzip /opt/Download/mcr.zip -d /root/Download/mcr
+RUN unzip /opt/Download/mcr.zip -d /opt/Download/mcr
 RUN wget -O /opt/Download/MCR_installer_input.txt https://ndownloader.figshare.com/files/5588213?private_link=025fa9f2e33725713eb0
 RUN wget -O /opt/Download/aa.tar.gz https://ndownloader.figshare.com/files/5590577?private_link=eee1c8631ce8697f7133
 
