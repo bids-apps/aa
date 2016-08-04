@@ -28,7 +28,6 @@ RUN yum -y install graphviz
 # RUN echo '. ${FSLDIR}/etc/fslconf/fsl.sh' >> /opt/bin/fsl_bash
 # RUN echo 'PATH=${FSLDIR}/bin:${PATH}' >> /opt/bin/fsl_bash
 # RUN echo 'export FSLDIR PATH' >> /opt/bin/fsl_bash
-# RUN chmod +x /opt/bin/fsl_bash
 
 # # FreeSurfer
 # RUN wget -O /opt/Download/freesurfer.tar.gz ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0/freesurfer-Linux-centos6_x86_64-stable-pub-v5.3.0.tar.gz
@@ -38,7 +37,6 @@ RUN yum -y install graphviz
 # RUN echo 'export FSF_OUTPUT_FORMAT=nii' >> /opt/bin/freesurfer_bash
 # RUN echo 'export FREESURFER_HOME=/opt/freesurfer' >> /opt/bin/freesurfer_bash 
 # RUN echo 'source $FREESURFER_HOME/FreeSurferEnv.sh' >> /opt/bin/freesurfer_bash
-# RUN chmod +x /opt/bin/freesurfer_bash
 # RUN yum -y install tcsh bc libjpeg
 
 # Cleanup
@@ -52,5 +50,6 @@ RUN mkdir /local-scratch
 RUN mkdir /opt/bin
 ADD run.sh /opt/bin/run.sh
 ADD look_for_arg.sh /opt/bin/look_for_arg.sh
+RUN chmod +x /opt/bin/*
 
 ENTRYPOINT ["/opt/bin/run.sh"]
