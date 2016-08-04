@@ -13,10 +13,8 @@ RUN unzip /opt/Download/mcr.zip -d /opt/Download/mcr
 RUN wget -O /opt/Download/MCR_installer_input.txt https://ndownloader.figshare.com/files/5588213?private_link=025fa9f2e33725713eb0
 RUN wget -O /opt/Download/aa.tar.gz https://ndownloader.figshare.com/files/5590577?private_link=eee1c8631ce8697f7133
 
-RUN cd /opt/Download/mcr
-RUN ./install -inputFile ../MCR_installer_input.txt
-RUN cd /opt
-RUN tar -xzf /opt/Download/aa.tar.gz
+RUN /opt/Download/mcr/install -inputFile /opt/Download/MCR_installer_input.txt
+RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
 # RUN yum -y install raptor 
 # RUN wget -O /etc/yum.repos.d/graphviz-rhel.repo http://www.graphviz.org/graphviz-rhel.repo
