@@ -22,28 +22,28 @@ aap.acq_details.input.combinemultiple = 1;
 aap.options.autoidentifystructural_choosefirst = 1;
 aap = aas_processBIDS(aap);
 
-% % Contrast for test1
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[1 0 0],'Loc:Finger','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[0 1 0],'Loc:Foot','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[0 0 1],'Loc:Lips','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[1 0 0 -1 0],'LB:Task:Resp-NoResp','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[-1 0 0 1 0],'LB:Task:NoResp-Resp','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[0 0 -1 0 1],'LB:Control:Resp-NoResp','T');
-% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[0 0 1 0 -1],'LB:Control:NoResp-Resp','T');
+% Contrast for test1
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[1 0 0],'Loc:Finger','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[0 1 0],'Loc:Foot','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips',[0 0 1],'Loc:Lips','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[1 0 0 -1 0],'LB:Task:Resp-NoResp','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[-1 0 0 1 0],'LB:Task:NoResp-Resp','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[0 0 -1 0 1],'LB:Control:Resp-NoResp','T');
+aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection',[0 0 1 0 -1],'LB:Control:NoResp-Resp','T');
 
-% Contrast for test2
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[1 0 0],'Loc_T:Finger','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[0 1 0],'Loc_T:Foot','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[0 0 1],'Loc_T:Lips','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[1 0 0 -1 0],'LB_T:Task:Resp-NoResp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[-1 0 0 1 0],'LB_T:Task:NoResp-Resp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[0 0 -1 0 1],'LB_T:Control:Resp-NoResp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[0 0 1 0 -1],'LB_T:Control:NoResp-Resp','T');
-
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[1 0 0],'Loc_RT:Finger','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[0 1 0],'Loc_T:Foot','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[0 0 1],'Loc_T:Lips','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[1 0 0 -1 0],'LB_RT:Task:Resp-NoResp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[-1 0 0 1 0],'LB_RT:Task:NoResp-Resp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[0 0 -1 0 1],'LB_RT:Control:Resp-NoResp','T');
-aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[0 0 1 0 -1],'LB_RT:Control:NoResp-Resp','T');
+% % Contrast for test2
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[1 0 0],'Loc_T:Finger','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[0 1 0],'Loc_T:Foot','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_test',[0 0 1],'Loc_T:Lips','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[1 0 0 -1 0],'LB_T:Task:Resp-NoResp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[-1 0 0 1 0],'LB_T:Task:NoResp-Resp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[0 0 -1 0 1],'LB_T:Control:Resp-NoResp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_test',[0 0 1 0 -1],'LB_T:Control:NoResp-Resp','T');
+% 
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[1 0 0],'Loc_RT:Finger','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[0 1 0],'Loc_T:Foot','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:fingerfootlips_retest',[0 0 1],'Loc_T:Lips','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[1 0 0 -1 0],'LB_RT:Task:Resp-NoResp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[-1 0 0 1 0],'LB_RT:Task:NoResp-Resp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[0 0 -1 0 1],'LB_RT:Control:Resp-NoResp','T');
+% aap = aas_addcontrast(aap,'aamod_firstlevel_contrasts','*','singlesession:linebisection_retest',[0 0 1 0 -1],'LB_RT:Control:NoResp-Resp','T');
