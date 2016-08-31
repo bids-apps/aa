@@ -25,6 +25,9 @@
 # 						can be specified with a space separated list.
 
 # Parsing arguments
+CONFIG=/opt/aap_parameters_defaults_CRN.xml
+TASKLIST=/opt/test/BIDS114_tasklist.xml
+UMS=/opt/test/BIDS114_aa.m
 BIDS_DIR=$1
 ANADIR=$2
 
@@ -35,7 +38,7 @@ case "$3" in
 		if [ "$ind" -gt 0 ]; then
 			((ind+=1))
 			SUBJLABEL=${!ind}
-			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/v80/ $BIDS_DIR $ANADIR $SUBJLABEL
+			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/v80/ $CONFIG $TASKLIST $UMS $BIDS_DIR $ANADIR $SUBJLABEL
 		fi
         ;;
     group)
