@@ -38,7 +38,7 @@ case "$3" in
 		if [ "$ind" -gt 0 ]; then
 			((ind+=1))
 			SUBJLABEL=${!ind}
-			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/v80/ $CONFIG $TASKLIST $UMS $BIDS_DIR $ANADIR $SUBJLABEL
+			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/v80/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR subj $SUBJLABEL
 		fi
         ;;
     group)
