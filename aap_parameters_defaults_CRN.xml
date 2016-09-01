@@ -13,7 +13,7 @@
             <subjectoutputformat desc='sprintf formatting string to get subject directory from number' ui='text'></subjectoutputformat>
             <megsubjectoutputformat desc='sprintf formatting string to get subject directory from number' ui='text'></megsubjectoutputformat>
             <fsldir desc='Path to fsl' ui='dir'>/opt/fsl</fsldir>
-            <fslsetup desc='Path to fsl setup script, executing before any fsl command' ui='text'>source /imaging/local/linux/config/fsl_csh</fslsetup>
+            <fslsetup desc='Path to fsl setup script, executing before any fsl command' ui='text'>source /opt/bin/fsl_csh</fslsetup>
             <fslshell desc='Shell used to run FSL' ui='text'>csh</fslshell>
             <fsloutputtype desc='Output type used by FSL' ui='text'>NIFTI</fsloutputtype>
             <freesurferdir desc='Path to freesurfer' ui='dir'>/opt/freesurfer</freesurferdir>        

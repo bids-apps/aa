@@ -27,10 +27,9 @@ RUN yum -y install graphviz
 # FSL
 RUN wget -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos6_64.tar.gz
 RUN tar -xzf /opt/Download/fsl.tar.gz -C /opt
-RUN echo 'FSLDIR=/opt/fsl' > /opt/bin/fsl_bash
-RUN echo '. ${FSLDIR}/etc/fslconf/fsl.sh' >> /opt/bin/fsl_bash
-RUN echo 'PATH=${FSLDIR}/bin:${PATH}' >> /opt/bin/fsl_bash
-RUN echo 'export FSLDIR PATH' >> /opt/bin/fsl_bash
+RUN echo 'setenv FSLDIR /opt/fsl' > /opt/bin/fsl_csh
+RUN echo 'source ${FSLDIR}/etc/fslconf/fsl.sh' >> /opt/bin/fsl_csh
+RUN echo 'setenv PATH ${FSLDIR}/bin:${PATH}' >> /opt/bin/fsl_csh
 
 # FreeSurfer
 RUN wget -O /opt/Download/freesurfer.tar.gz ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0/freesurfer-Linux-centos6_x86_64-stable-pub-v5.3.0.tar.gz
