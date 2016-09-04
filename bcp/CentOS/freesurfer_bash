@@ -1,0 +1,4 @@
+export FSL_DIR=/opt/fsl
+export FSF_OUTPUT_FORMAT=nii
+export FREESURFER_HOME=/opt/freesurfer
+source $FREESURFER_HOME/FreeSurferEnv.sh
