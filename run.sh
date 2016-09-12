@@ -1,10 +1,22 @@
 #!/bin/bash
-# usage: run <bids_dir> <output_dir> {participant|group} [--participant_label <participant_label>]
+# usage: run <bids_dir> <tasklist> <user_customisation> <output_dir> {participant|group} [--participant_label <participant_label>]
 #
 # positional arguments:
 #   <bids_dir>          
 # 					  The directory with the input dataset formatted
 # 						according to the BIDS standard.
+#   <tasklist>          
+# 					  aa tasklist describing the steps (XML file)
+#   <user_customisation>          
+# 					  Pipeline customisation (XML file for editing aap structure)
+# 						- Its structure must correspond to that of the aap
+# 						  apart from special cases (see later).
+# 						- Index in lists of structures (e.g. aamod_smooth(1))
+# 						  can be indicated following to aa practice: 
+# 						  e.g. aamod_smooth_00001. Default is 1
+# 						- Special cases
+# 							- firstlevel_contrasts
+# 							- input.isBIDS
 #   <output_dir>		  
 # 					  The directory where the output files should be stored.
 # 						If you are running group level analysis this folder
@@ -26,12 +38,13 @@
 
 # Parsing arguments
 CONFIG=/opt/aap_parameters_defaults_CRN.xml
-TASKLIST=/opt/test/BIDS114_tasklist.xml
-UMS=/opt/test/BIDS114_aa.m
 BIDS_DIR=$1
-ANADIR=$2
+TASKLIST=$2
+UMS=$3
+ANADIR=$4
+LEVEL=$5
 
-case "$3" in
+case "$LEVEL" in
     participant)
 	
 		ind=$(/opt/bin/look_for_arg.sh --participant_label $@);
