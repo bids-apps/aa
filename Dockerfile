@@ -47,7 +47,7 @@ ADD run.sh /opt/bin/run.sh
 ADD look_for_arg.sh /opt/bin/look_for_arg.sh
 RUN chmod +x /opt/bin/*
 
-# COPY version /version
+COPY version /version
 
 # CRN
 RUN mkdir /oasis
