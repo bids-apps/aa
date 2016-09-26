@@ -7,12 +7,12 @@ RUN mkdir /opt/Download
 
 # FSL
 # RUN apt-get update && \
-    curl -sSL http://neuro.debian.net/lists/trusty.us-tn.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
-    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
-    apt-get update && \
-    apt-get remove -y curl && \
-    apt-get install -y fsl-complete && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#    curl -sSL http://neuro.debian.net/lists/trusty.us-tn.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
+#    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
+#    apt-get update && \
+#    apt-get remove -y curl && \
+#    apt-get install -y fsl-complete && \
+#    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN wget -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
 RUN tar -xzf /opt/Download/fsl.tar.gz -C /opt
 
@@ -24,15 +24,15 @@ ADD freesurfer_bash /opt/bin/freesurfer_bash
 RUN wget -O /opt/Download/mcr.zip http://uk.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip
 RUN mkdir /opt/Download/mcr
 RUN unzip /opt/Download/mcr.zip -d /opt/Download/mcr
-RUN wget -O /opt/Download/MCR_installer_input.txt https://a5b6800b0884b5daec7696c740b66232e44efded.googledrive.com/host/0B9T4a0ktPmB1R2FJRjVNa19JVTQ/MCR_installer_input.txt # https://ndownloader.figshare.com/files/5588213?private_link=025fa9f2e33725713eb0
+RUN wget -O /opt/Download/MCR_installer_input.txt "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&docid=193b86deb1da14cdb9ff24ee45e423fa8&rev=1"
 RUN /opt/Download/mcr/install -inputFile /opt/Download/MCR_installer_input.txt
 
 RUN echo "deb http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
 RUN echo "deb-src http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
-wget -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
+RUN wget -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
 RUN apt-get update -y && apt-get install -y rsync raptor-utils graphviz
 
-RUN wget -O /opt/Download/aa.tar.gz https://a5b6800b0884b5daec7696c740b66232e44efded.googledrive.com/host/0B9T4a0ktPmB1R2FJRjVNa19JVTQ/automaticanalysis5.tar.gz #https://ndownloader.figshare.com/files/5590577?private_link=eee1c8631ce8697f7133
+RUN wget -O /opt/Download/aa.tar.gz "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=wn9EMr9anVewzzVhQtnp8eJ346bmU8pcGUAqB2w1ZlM%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=wn9EMr9anVewzzVhQtnp8eJ346bmU8pcGUAqB2w1ZlM%3d&docid=1a3613d05a3a7469ab58ba220275cffe8&rev=1"
 RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
 ADD aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
