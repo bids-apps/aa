@@ -2,8 +2,8 @@ FROM bids/base_freesurfer
 
 # Prepare for downloads
 RUN apt-get update -y && apt-get install -y wget unzip
-RUN if [[ ! -d /opt/bin ]]; then mkdir /opt/bin; fi
-RUN if [[ ! -d /opt/Download ]]; then mkdir /opt/Download; fi
+RUN mkdir /opt/bin
+RUN mkdir /opt/Download
 
 # FSL
 # RUN apt-get update && \
