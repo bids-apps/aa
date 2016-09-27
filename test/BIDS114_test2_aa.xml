@@ -2,10 +2,10 @@
 <!-- This is a parameters and settings customising file to process BIDS multimodal test dataset ds114_test2 (https://googledrive.com/host/0B2JWN60ZLkgkMEw4bW5VUUpSdFU/ds114_test2.tar) -->
 <aap>
     <options>
-        <wheretoprocess>matlab_pct</wheretoprocess>
+        <!--wheretoprocess>matlab_pct</wheretoprocess>
         <aaparallel>
             <numberofworkers>4</numberofworkers>
-        </aaparallel>
+        </aaparallel-->
         <NIFTI4D>1</NIFTI4D>
         <email>tibor.auer@rhul.ac.uk</email>
         
@@ -21,9 +21,9 @@
     </acq_details>
         
     <tasksettings>
-        <aamod_dartel_norm_write>
+        <aamod_norm8>
             <vox>1</vox>
-        </aamod_dartel_norm_write>
+        </aamod_norm8>
         <aamod_diffusion_bet>
             <bet_f_parameter>0.4</bet_f_parameter>
         </aamod_diffusion_bet>
@@ -31,9 +31,9 @@
             <autodetectSO>1</autodetectSO>
             <refslice>16</refslice>
         </aamod_slicetiming>
-        <aamod_norm_write_dartel>
+        <aamod_norm_write>
             <vox>3 3 3</vox>
-        </aamod_norm_write_dartel>
+        </aamod_norm_write>
         <aamod_smooth>
             <FWHM>5</FWHM>
         </aamod_smooth>
