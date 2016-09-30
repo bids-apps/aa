@@ -12,7 +12,7 @@
             <remotefilesystem  desc='Type of files for imaging data' options='none|s3' ui='optionlist'>none</remotefilesystem>
             <subjectoutputformat desc='sprintf formatting string to get subject directory from number' ui='text'></subjectoutputformat>
             <megsubjectoutputformat desc='sprintf formatting string to get subject directory from number' ui='text'></megsubjectoutputformat>
-            <fsldir desc='Path to fsl' ui='dir'>/opt/fsl</fsldir>
+            <fsldir desc='Path to fsl' ui='dir'>/usr/share/fsl/5.0</fsldir>
             <fslsetup desc='Path to fsl setup script, executing before any fsl command' ui='text'>/opt/bin/fsl_csh</fslsetup>
             <fslshell desc='Shell used to run FSL' ui='text'>csh</fslshell>
             <fsloutputtype desc='Output type used by FSL' ui='text'>NIFTI</fsloutputtype>

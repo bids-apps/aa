@@ -6,15 +6,15 @@ RUN mkdir /opt/bin
 RUN mkdir /opt/Download
 
 # FSL
-# RUN apt-get update && \
-#    curl -sSL http://neuro.debian.net/lists/trusty.us-tn.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
-#    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
-#    apt-get update && \
-#    apt-get remove -y curl && \
-#    apt-get install -y fsl-complete && \
-#    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN wget -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
-RUN tar -xzf /opt/Download/fsl.tar.gz -C /opt
+RUN apt-get update && \
+    curl -sSL http://neuro.debian.net/lists/trusty.us-tn.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
+    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
+    apt-get update && \
+    apt-get remove -y curl && \
+    apt-get install -y fsl-complete && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN wget -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
+# RUN tar -xzf /opt/Download/fsl.tar.gz -C /opt
 
 # Configuration files for FSL and FS0
 ADD fsl_csh /opt/bin/fsl_csh
