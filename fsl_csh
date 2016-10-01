@@ -1,14 +1,15 @@
-setenv FSLDIR /usr/share/fsl/5.0
+# setenv FSLDIR /usr/share/fsl/5.0
+setenv FSLDIR /opt/fsl
 setenv PATH ${FSLDIR}/bin:${PATH}
 setenv FSLOUTPUTTYPE NIFTI
 setenv FSLMULTIFILEQUIT TRUE
 setenv POSSUMDIR ${FSLDIR}
 
-if (! $?LD_LIBRARY_PATH) then       
-  setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0
-else
-  setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0:${LD_LIBRARY_PATH}
-endif
+# if (! $?LD_LIBRARY_PATH) then       
+#   setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0
+# else
+#   setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0:${LD_LIBRARY_PATH}
+# endif
 
 setenv FSLTCLSH /usr/bin/tclsh
 setenv FSLWISH /usr/bin/wish
