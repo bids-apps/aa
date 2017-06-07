@@ -35,8 +35,13 @@ RUN apt-get update -y && apt-get install -y rsync raptor-utils graphviz
 RUN wget -O /opt/Download/aa.tar.gz "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&docid=1fbd84bc53c5b47edb640fb83c9e8e068&rev=1"
 RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
+# Configuration
 ADD aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 ADD aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
+
+# Default tasklist for dataset with structural, functional and diffusion data
+ADD BIDS_tasklist.xml /opt/BIDS_tasklist.xml
+ADD BIDS_aa.xml /opt/BIDS_aa.xml
 
 # Cleanup
 RUN rm -rf /opt/Download
