@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This is a tasklist to process BIDS multimodal NIfTI dataset ds114 (https://github.com/INCF/BIDS-examples/tree/master/ds114) -->
 <aap>
     <tasklist>
         <initialisation>
@@ -12,11 +11,9 @@
         <main>
             <!-- Data -->
             <module><name>aamod_structuralfromnifti</name></module>
-            <module><name>aamod_diffusionfromnifti</name></module>
             <module><name>aamod_epifromnifti</name></module>
 
             <module><name>aamod_reorienttomiddle_structural</name></module>
-            <module><name>aamod_reorienttomiddle_diffusion</name></module>
             <module><name>aamod_reorienttomiddle_epi</name></module>
             <module><name>aamod_tsdiffana</name></module>
             
@@ -27,13 +24,6 @@
             <module><name>aamod_freesurfer_initialise</name></module>                       
                         
             <module><name>aamod_norm8</name></module>
-            
-            <!-- Diffusion -->
-            <module><name>aamod_diffusion_extractnodif</name></module>
-            <module><name>aamod_diffusion_bet</name></module>
-            <module><name>aamod_diffusion_dtinlfit</name></module>
-            <module><name>aamod_diffusion_coreg_extended_2DTI</name></module>
-            <module><name>aamod_diffusion_norm_write_DTI</name></module>
             
             <!-- Functional -->
             <module><name>aamod_realign</name></module>
