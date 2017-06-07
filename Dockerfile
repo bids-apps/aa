@@ -13,7 +13,7 @@ RUN mkdir /opt/Download
 #    apt-get remove -y curl && \
 #    apt-get install -y fsl-complete && \
 #    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN wget -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
+RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
 RUN tar -xzf /opt/Download/fsl.tar.gz -C /opt
 
 # Configuration files for FSL and FS0
@@ -21,18 +21,18 @@ ADD fsl_csh /opt/bin/fsl_csh
 ADD freesurfer_bash /opt/bin/freesurfer_bash
 
 # aa - compile with dependecies
-RUN wget -O /opt/Download/mcr.zip http://uk.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip
+RUN wget --quiet -O /opt/Download/mcr.zip http://uk.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip
 RUN mkdir /opt/Download/mcr
 RUN unzip /opt/Download/mcr.zip -d /opt/Download/mcr
-RUN wget -O /opt/Download/MCR_installer_input.txt "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&docid=193b86deb1da14cdb9ff24ee45e423fa8&rev=1"
+RUN wget --quiet -O /opt/Download/MCR_installer_input.txt "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=ZfbRLo%2fPDkbwAJ0AAwSyvIKk9dBkieKKvc3Yu%2bduGQs%3d&docid=193b86deb1da14cdb9ff24ee45e423fa8&rev=1"
 RUN /opt/Download/mcr/install -inputFile /opt/Download/MCR_installer_input.txt
 
 RUN echo "deb http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
 RUN echo "deb-src http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
-RUN wget -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
+RUN wget --quiet -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
 RUN apt-get update -y && apt-get install -y rsync raptor-utils graphviz
 
-RUN wget -O /opt/Download/aa.tar.gz "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&docid=1fbd84bc53c5b47edb640fb83c9e8e068&rev=1"
+RUN wget --quiet -O /opt/Download/aa.tar.gz "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&docid=1fbd84bc53c5b47edb640fb83c9e8e068&rev=1"
 RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
 # Configuration
