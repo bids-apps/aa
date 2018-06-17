@@ -13,18 +13,18 @@ RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownlo
 RUN tar --no-same-owner -xzf /opt/Download/fsl.tar.gz -C /opt
 COPY fsl_csh /opt/bin/fsl_csh
 
-# aa - compile with dependecies
+# MCR
 ENV MATLAB_VERSION R2012b
-RUN mkdir /opt/mcr_install && \
-    mkdir /opt/mcr && \
+RUN mkdir /opt/Download/mcr_install mcr && \
     wget --quiet -P /opt/Download/mcr_install http://www.mathworks.com/supportfiles/downloads/${MATLAB_VERSION}/deployment_files/${MATLAB_VERSION}/installers/glnxa64/MCR_${MATLAB_VERSION}_glnxa64_installer.zip && \
-    unzip -q /opt/mcr_install/MCR_${MATLAB_VERSION}_glnxa64_installer.zip -d /opt/Download/mcr_install && \
+    unzip -q /opt/Download/mcr_install/MCR_${MATLAB_VERSION}_glnxa64_installer.zip -d /opt/Download/mcr_install && \
     /opt/Download/mcr_install/install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
-    rm -rf /opt/mcr_install /tmp/*
+    rm -rf /opt/Download/mcr_install /tmp/*
 ENV MCR_VERSION v80
 ENV LD_LIBRARY_PATH /opt/mcr/${MCR_VERSION}/runtime/glnxa64:/opt/mcr/${MCR_VERSION}/bin/glnxa64:/opt/mcr/${MCR_VERSION}/sys/os/glnxa64:/opt/mcr/${MCR_VERSION}/sys/opengl/lib/glnxa64
 ENV MCR_INHIBIT_CTF_LOCK 1
 
+# aa
 RUN wget --quiet -O /opt/Download/aa.tar.gz "https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/download.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&SourceUrl=https://rhul-my.sharepoint.com/personal/tibor_auer_rhul_ac_uk/_layouts/15/guestaccess.aspx?guestaccesstoken=pxVLzoJCCPuPEe2rhU8aD5PYVERCg1FWMm1BapVeASo%3d&docid=1fbd84bc53c5b47edb640fb83c9e8e068&rev=1"
 RUN tar --no-same-owner -xzf /opt/Download/aa.tar.gz -C /opt
 
