@@ -21,8 +21,6 @@
             <module><name>aamod_biascorrect_structural</name></module>
             <module><name>aamod_coreg_extended_1</name></module>
             
-            <module><name>aamod_freesurfer_initialise</name></module>                       
-                        
             <module><name>aamod_norm8</name></module>
             
             <!-- Functional -->
