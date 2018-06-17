@@ -1,16 +1,16 @@
-FROM bids/base_fsl
+FROM bids/base_validator
 
 MAINTAINER Tibor Auer <tibor.auer@rhul.ac.uk>
 
 # Prepare for downloads
 RUN apt-get -qq update && apt-get -qq install -y \
-    unzip \
-    xorg \
-    wget && \
+    unzip xorg wget && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir /opt/bin /opt/Download
 
-# Configuration files for FSL and FS0
+# FSL
+RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz
+RUN tar --no-same-owner -xzf /opt/Download/fsl.tar.gz -C /opt
 COPY fsl_csh /opt/bin/fsl_csh
 
 # aa - compile with dependecies
