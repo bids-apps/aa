@@ -23,10 +23,10 @@ RUN mkdir /opt/Download/mcr_install /opt/mcr && \
 # ENV MATLAB_VERSION R2015b
 ENV MCR_VERSION v80
 # RUN mkdir /opt/Download/mcr_install /opt/mcr && \
-    wget --quiet -P /opt/Download/mcr_install http://www.mathworks.com/supportfiles/downloads/${MATLAB_VERSION}/deployment_files/${MATLAB_VERSION}/installers/glnxa64/MCR_${MATLAB_VERSION}_glnxa64_installer.zip && \
-    unzip -q /opt/Download/mcr_install/MCR_${MATLAB_VERSION}_glnxa64_installer.zip -d /opt/Download/mcr_install && \
-    /opt/Download/mcr_install/install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
-    rm -rf /opt/Download/mcr_install /tmp/*
+#    wget --quiet -P /opt/Download/mcr_install http://www.mathworks.com/supportfiles/downloads/${MATLAB_VERSION}/deployment_files/${MATLAB_VERSION}/installers/glnxa64/MCR_${MATLAB_VERSION}_glnxa64_installer.zip && \
+#   unzip -q /opt/Download/mcr_install/MCR_${MATLAB_VERSION}_glnxa64_installer.zip -d /opt/Download/mcr_install && \
+#    /opt/Download/mcr_install/install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
+#    rm -rf /opt/Download/mcr_install /tmp/*
 ENV LD_LIBRARY_PATH /opt/mcr/${MCR_VERSION}/runtime/glnxa64:/opt/mcr/${MCR_VERSION}/bin/glnxa64:/opt/mcr/${MCR_VERSION}/sys/os/glnxa64:/opt/mcr/${MCR_VERSION}/sys/opengl/lib/glnxa64
 ENV MCR_INHIBIT_CTF_LOCK 1
 
