@@ -56,7 +56,7 @@ case "$LEVEL" in
 			((ind+=1)); if [ ${!ind} ]; then TASKLIST=${!ind}; fi
 			((ind+=1)); if [ ${!ind} ]; then UMS=${!ind}; fi
 
-			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/v80/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR subj $SUBJLABEL
+			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/v94/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR subj $SUBJLABEL
 		fi
         ;;
     group)
