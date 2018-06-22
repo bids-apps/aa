@@ -37,7 +37,7 @@
 # 							- input.isBIDS
 
 # Parsing arguments
-CONFIG=/opt/aap_parameters_defaults_CRN.xml
+CONFIG=/opt/aap_parameters_defaults_BIDS.xml
 TASKLIST=/opt/BIDS_tasklist.xml
 UMS=/opt/BIDS_aa.xml
 
