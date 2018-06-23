@@ -4,7 +4,7 @@ MAINTAINER Tibor Auer <tibor.auer@rhul.ac.uk>
 
 # Prepare for downloads
 RUN apt-get -qq update && apt-get -qq install -y \
-    unzip xorg wget && \
+    unzip xorg wget rsync && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir /opt/bin /opt/Download
 
