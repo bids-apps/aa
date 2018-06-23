@@ -14,7 +14,7 @@ RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownlo
 COPY fsl_csh /opt/bin/fsl_csh
 
 # aa
-RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b2bd384b3dd22000efad3c4" && \
+RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b2da7a3daf8210012d50741" && \
     tar --no-same-owner -xf /opt/Download/aa.tar.gz -C /opt
 COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
