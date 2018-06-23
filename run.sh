@@ -38,8 +38,15 @@
 
 # Parsing arguments
 CONFIG=/opt/aap_parameters_defaults_BIDS.xml
-TASKLIST=/opt/BIDS_tasklist.xml
-UMS=/opt/BIDS_aa.xml
+
+indUMS=$# # UMS is expected at the last position
+((indTL=indUMS-1)) # tasklist is expected before the UMS
+TASKLIST=${!indTL}
+UMS= ${!indUMS}
+if [[ $TASKLIST = *".xml" ]]; then
+	TASKLIST=/opt/BIDS_tasklist.xml
+	UMS=/opt/BIDS_aa.xml
+fi
 
 BIDS_DIR=$1
 ANADIR=$2
@@ -60,6 +67,6 @@ case "$LEVEL" in
 		fi
         ;;
     group)
-		echo "Not yet implemented"
+		/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/v94/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR
         ;;
 esac
