@@ -14,8 +14,8 @@ RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownlo
 COPY fsl_csh /opt/bin/fsl_csh
 
 # aa
-RUN wget --quiet -c -O /opt/Download/aa.tar.gz "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b2bd384b3dd22000efad3c4" && \
-    tar --no-same-owner -xzf /opt/Download/aa.tar.gz -C /opt
+RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b2bd384b3dd22000efad3c4" && \
+    tar --no-same-owner -xf /opt/Download/aa.tar.gz -C /opt
 COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
 
@@ -27,7 +27,6 @@ RUN mkdir /opt/Download/mcr_install /opt/mcr && \
     unzip -q /opt/Download/mcr_install.zip -d /opt/Download/mcr_install && \
     /opt/Download/mcr_install/install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
     rm -rf /opt/Download/mcr_install* /tmp/*
-ENV LD_LIBRARY_PATH /opt/mcr/${MCR_VERSION}/runtime/glnxa64:/opt/mcr/${MCR_VERSION}/bin/glnxa64:/opt/mcr/${MCR_VERSION}/sys/os/glnxa64:/opt/mcr/${MCR_VERSION}/sys/opengl/lib/glnxa64
 ENV MCR_INHIBIT_CTF_LOCK 1
 
 # Default tasklist for dataset with structural, functional and diffusion data
