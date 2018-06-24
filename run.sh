@@ -43,7 +43,7 @@ indUMS=$# # UMS is expected at the last position
 ((indTL=indUMS-1)) # tasklist is expected before the UMS
 TASKLIST=${!indTL}
 UMS=${!indUMS}
-if [[ $TASKLIST = *".xml" ]]; then
+if [[ $TASKLIST != *".xml" ]]; then
 	TASKLIST=/opt/BIDS_tasklist.xml
 	UMS=/opt/BIDS_aa.xml
 fi
@@ -54,19 +54,15 @@ LEVEL=$3
 
 case "$LEVEL" in
     participant)
-	
 		ind=$(/opt/bin/look_for_arg.sh --participant_label $@);
 		if [ "$ind" -gt 0 ]; then
 			((ind+=1))
 			SUBJLABEL=${!ind}
 
-			((ind+=1)); if [ ${!ind} ]; then TASKLIST=${!ind}; fi
-			((ind+=1)); if [ ${!ind} ]; then UMS=${!ind}; fi
-
-			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/v94/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR subj "sub-$SUBJLABEL"
+			/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/${MCR_VERSION} $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR subj "sub-$SUBJLABEL"
 		fi
         ;;
     group)
-		/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/v94/ $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR
+		/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/${MCR_VERSION} $CONFIG $TASKLIST $UMS mridatadir $BIDS_DIR anadir $ANADIR
         ;;
 esac
