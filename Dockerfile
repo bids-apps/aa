@@ -30,7 +30,7 @@ RUN wget -qO- https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/frees
     --exclude='freesurfer/lib/qt'
 
 # aa
-RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b2e523ed65eaa000edbf72d" && \
+RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b311169d65eaa000fdd1839" && \
     tar --no-same-owner -xf /opt/Download/aa.tar -C /opt
 COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
