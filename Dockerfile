@@ -2,9 +2,9 @@ FROM bids/base_validator
 
 MAINTAINER Tibor Auer <tibor.auer@rhul.ac.uk>
 
-# Prepare for downloads
+# Install dependencies
 RUN apt-get -qq update && apt-get -qq install -y \
-    unzip xorg wget rsync csh && \
+    unzip xorg wget rsync csh tcsh bc libgomp1 perl-modules && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir /opt/bin /opt/Download
 
