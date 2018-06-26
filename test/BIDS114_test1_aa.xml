@@ -46,161 +46,55 @@
     </tasksettings>
     
     <firstlevel_contrasts>
-        <!-- Contrast for test1 -->
         <con1>
             <subject>*</subject>
-            <format>singlesession:fingerfootlips</format>
+            <format>singlesession:finger_foot_lips</format>
             <vector>1 0 0</vector>
             <name>Loc_Finger</name>
             <type>T</type>
         </con1>
         <con2>
             <subject>*</subject>
-            <format>singlesession:fingerfootlips</format>
+            <format>singlesession:finger_foot_lips</format>
             <vector>0 1 0</vector>
             <name>Loc_Foot</name>
             <type>T</type>
         </con2>
         <con3>
             <subject>*</subject>
-            <format>singlesession:fingerfootlips</format>
+            <format>singlesession:finger_foot_lips</format>
             <vector>0 0 1</vector>
             <name>Loc_Lips</name>
             <type>T</type>
         </con3>			
         <con4>
             <subject>*</subject>
-            <format>singlesession:linebisection</format>
+            <format>singlesession:line_bisection</format>
             <vector>1 0 0 -1 0</vector>
             <name>LB_Task_Resp-NoResp</name>
             <type>T</type>
         </con4>
         <con5>
             <subject>*</subject>
-            <format>singlesession:linebisection</format>
+            <format>singlesession:line_bisection</format>
             <vector>-1 0 0 1 0</vector>
             <name>LB_Task_NoResp-Resp</name>
             <type>T</type>
         </con5>
         <con6>
             <subject>*</subject>
-            <format>singlesession:linebisection</format>
+            <format>singlesession:line_bisection</format>
             <vector>0 0 -1 0 1</vector>
             <name>LB_Controls_Resp-NoResp</name>
             <type>T</type>
         </con6>
         <con7>
             <subject>*</subject>
-            <format>singlesession:linebisection</format>
+            <format>singlesession:line_bisection</format>
             <vector>0 0 1 0 -1</vector>
             <name>LB_Controls_NoResp-Resp</name>
             <type>T</type>
         </con7>
-        <!-- Contrast for test2
-        <con1>
-            <subject>*</subject>
-            <format>singlesession:fingerfootlips_test</format>
-            <vector>1 0 0</vector>
-            <name>Loc_Finger</name>
-            <type>T</type>
-        </con1>
-        <con2>
-            <subject>*</subject>
-            <format>singlesession:fingerfootlips_test</format>
-            <vector>		
-                
-            0 1 0</vector>
-            <name>Loc_Foot</name>
-            <type>T</type>
-        </con2>		
-        
-        
-        <con3>
-            <subject>*</subject>
-            <format>		
-                
-            singlesession:fingerfootlips_test</format>
-            <vector>0 0 1</vector>
-            <name>Loc_Lips</name>
-            <type>T</type>
-        </con3>			
-        <con4>
-            <subject>*</subject>
-            <format>singlesession:linebisection_test</format>
-            <vector>1 0 0 -1 0</vector>
-            <name>LB_Task_Resp-NoResp</name>
-            <type>T</type>
-        </con4>
-        <con5>
-            <subject>*</subject>
-            <format>singlesession:linebisection_test</format>
-            <vector>-1 0 0 1 0</vector>
-            <name>LB_Task_NoResp-Resp</name>
-            <type>T</type>
-        </con5>
-        <con6>
-            <subject>*</subject>
-            <format>singlesession:linebisection_test</format>
-            <vector>0 0 -1 0 1</vector>
-            <name>LB_Controls_Resp-NoResp</name>
-            <type>T</type>
-        </con6>
-        <con7>
-            <subject>*</subject>
-            <format>singlesession:linebisection_test</format>
-            <vector>0 0 1 0 -1</vector>
-            <name>LB_Controls_NoResp-Resp</name>
-            <type>T</type>
-        </con7>
-        <con8>
-            <subject>*</subject>
-            <format>singlesession:fingerfootlips_retest</format>
-            <vector>1 0 0</vector>
-            <name>Loc_Finger</name>
-            <type>T</type>
-        </con8>
-        <con9>
-            <subject>*</subject>
-            <format>singlesession:fingerfootlips_retest</format>
-            <vector>0 1 0</vector>
-            <name>Loc_Foot</name>
-            <type>T</type>
-        </con9>
-        <con10>
-            <subject>*</subject>
-            <format>singlesession:fingerfootlips_retest</format>
-            <vector>0 0 1</vector>
-            <name>Loc_Lips</name>
-            <type>T</type>
-        </con10>			
-        <con11>
-            <subject>*</subject>
-            <format>singlesession:linebisection_retest</format>
-            <vector>1 0 0 -1 0</vector>
-            <name>LB_Task_Resp-NoResp</name>
-            <type>T</type>
-        </con11>
-        <con12>
-            <subject>*</subject>
-            <format>singlesession:linebisection_retest</format>
-            <vector>-1 0 0 1 0</vector>
-            <name>LB_Task_NoResp-Resp</name>
-            <type>T</type>
-        </con12>
-        <con13>
-            <subject>*</subject>
-            <format>singlesession:linebisection_retest</format>
-            <vector>0 0 -1 0 1</vector>
-            <name>LB_Controls_Resp-NoResp</name>
-            <type>T</type>
-        </con13>
-        <con14>
-            <subject>*</subject>
-            <format>singlesession:linebisection_retest</format>
-            <vector>0 0 1 0 -1</vector>
-            <name>LB_Controls_NoResp-Resp</name>
-            <type>T</type>
-        </con14-->
     </firstlevel_contrasts>
     
 </aap>
