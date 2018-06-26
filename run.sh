@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: run <bids_dir> <output_dir> {participant|group} [--participant_label <participant_label>] <tasklist> <user_customisation> 
+# usage: run <bids_dir> <output_dir> {participant|group} [--participant_label <participant_label>] [--freesurfer_license <license_file>] [<tasklist>] [<user_customisation>]
 #
 # positional arguments:
 #   <bids_dir>          
@@ -23,6 +23,11 @@
 # 						not include "sub-"). If this parameter is not provided
 # 						all subjects should be analyzed. Multiple participants
 # 						can be specified with a space separated list.
+#   --freesurfer_license <license_file>
+#					  Path to FreeSurfer license key file. Required if you specify
+#						tasklist with freesurfer modules. To obtain it you
+#                            			need to register (for free) at
+#                            			https://surfer.nmr.mgh.harvard.edu/registration.html
 #   <tasklist>          
 # 					  aa tasklist describing the steps (XML file)
 #   <user_customisation>          
@@ -48,6 +53,15 @@ if [[ $TASKLIST != *".xml" ]]; then
 	UMS=/opt/BIDS_aa.xml
 fi
 
+# Freesurfer licese (if specified)
+ind=$(/opt/bin/look_for_arg.sh --freesurfer_license $@);
+if [ "$ind" -gt 0 ]; then
+	((ind+=1))
+	LICENSE=${!ind}
+	cp $LICENSE $FS_HOME/license.txt
+fi
+
+# Analysis
 BIDS_DIR=$1
 ANADIR=$2
 LEVEL=$3

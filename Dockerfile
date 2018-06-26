@@ -9,8 +9,7 @@ RUN apt-get -qq update && apt-get -qq install -y \
     mkdir /opt/bin /opt/Download
 
 # FSL
-RUN wget --quiet -O /opt/Download/fsl.tar.gz http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz && \
-    tar --no-same-owner -xzf /opt/Download/fsl.tar.gz -C /opt
+RUN wget -qO- http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz | tar --no-same-owner -xzf -C /opt
 COPY fsl_csh /opt/bin/fsl_csh
 
 #FreeSurfer
@@ -28,10 +27,10 @@ RUN wget -qO- https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/frees
     --exclude='freesurfer/average/mult-comp-cor' \
     --exclude='freesurfer/lib/cuda' \
     --exclude='freesurfer/lib/qt'
+ENV FS_HOME=/opt/freesurfer
 
 # aa
-RUN wget --quiet -c -O /opt/Download/aa.tar "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b311169d65eaa000fdd1839" && \
-    tar --no-same-owner -xf /opt/Download/aa.tar -C /opt
+RUN wget -qO- "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5b311169d65eaa000fdd1839" | tar --no-same-owner -xf -C /opt
 COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
 
