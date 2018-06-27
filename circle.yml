@@ -21,7 +21,7 @@ dependencies:
         timeout: 86400
     - mkdir -p ~/docker; docker save "bids/${CIRCLE_PROJECT_REPONAME}" > ~/docker/image.tar
     - mkdir -p ${HOME}/outputs
-    - echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiIgPiBsaWNlbnNlLnR4dAo=" | base64 -d | sh
+    - echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiBGUzk2cFBLNXZXLjBnXG4iID4gbGljZW5zZS50eHQK" | base64 -d | sh
 
 test:
   override:
