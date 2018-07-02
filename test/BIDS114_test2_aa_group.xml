@@ -43,13 +43,6 @@
         <aamod_firstlevel_threshold>
             <overlay><nth_slice>9</nth_slice></overlay>
         </aamod_firstlevel_threshold>
-        <aamod_secondlevel_threshold>
-            <threshold>
-                <correction>none</correction>
-                <p>0.001</p>
-                <extent>0</extent>
-            </threshold>
-        </aamod_secondlevel_threshold>
     </tasksettings>
     
     <firstlevel_contrasts>
