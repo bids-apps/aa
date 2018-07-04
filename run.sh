@@ -63,7 +63,7 @@ if [[ $TASKLIST != *".xml" ]]; then
 fi
 
 # Freesurfer licese (if specified)
-ind=$(look_for_arg --freesurfer_license $@);
+ind=$(/opt/bin/look_for_arg.sh --freesurfer_license $@);
 if [ "$ind" -gt 0 ]; then
 	((ind+=1))
 	LICENSE=${!ind}
@@ -72,7 +72,7 @@ fi
 
 # Pipeline connection (if specified)
 CONNECTION=""
-ind=$(look_for_arg --connection $@);
+ind=$(/opt/bin/look_for_arg.sh --connection $@);
 if [ "$ind" -gt 0 ]; then
 	((ind+=1))
 	CONNECTION=" connection ${!ind}"
@@ -80,7 +80,7 @@ fi
 
 # Subject selection
 SUBJECT_SELECTION=""
-ind=$(look_for_arg --participant_label $@);
+ind=$(/opt/bin/look_for_arg.sh --participant_label $@);
 if [ "$ind" -gt 0 ]; then
 	((ind+=1))
 	SUBJECT_SELECTION=" subj sub-${!ind}"
