@@ -49,10 +49,20 @@
 aa_cmd="/opt/automaticanalysis5/run_automaticanalysis.sh /opt/mcr/${MCR_VERSION}"
 
 # Parsing arguments
+
+# Version
+ind=$(/opt/bin/look_for_arg.sh --version $@);
+if [ "$ind" -gt 0 ]; then
+	CMD="${aa_cmd} version"
+	echo "$CMD"
+	exec /bin/bash -c "$CMD"
+	exit
+fi
+
+# Pipeline
 CONFIG=/opt/aap_parameters_defaults_BIDS.xml
 BIDS_DIR=$1
 ANADIR=$2
-
 indUMS=$# # UMS is expected at the last position
 ((indTL=indUMS-1)) # tasklist is expected before the UMS
 TASKLIST=${!indTL}
