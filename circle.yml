@@ -1,13 +1,9 @@
 general:
   artifacts:
     - "~/outputs_basic1"
-    - "~/outputs_basic1_group"
     - "~/outputs_basic2"
-    - "~/outputs_basic2_group"
     - "~/outputs_advanced1"
-    - "~/outputs_advanced1_group"
     - "~/outputs_advanced2"
-    - "~/outputs_advanced2_group"
 machine:
   services:
     - docker
@@ -41,7 +37,7 @@ test:
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 02 :
         timeout: 86400
     # group level test for single session dataset
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_basic1_group:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group :
+    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group :
         timeout: 86400
     # participant level tests for a longitudinal dataset
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 01 :
@@ -49,7 +45,7 @@ test:
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 02 :
         timeout: 86400
     # group level test for a longitudinal dataset
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_basic2_group:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group :
+    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group :
         timeout: 86400
 
     # Advanced use case (configured pipeline)
@@ -59,9 +55,7 @@ test:
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_advanced1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt /opt/test/BIDS114_tasklist.xml /opt/test/BIDS114_test1_aa.xml :
         timeout: 86400
     # group level test for single session dataset (two-step approach: 1. update aap, 2 run connection)
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_advanced1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt /opt/test/BIDS114_tasklist.xml /opt/test/BIDS114_test1_aa.xml :
-        timeout: 86400
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_advanced1_group:/outputs -v ${HOME}/outputs_advanced1/automaticanalysis:/connection bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt --connection /connection /opt/test/BIDS114_group_tasklist.xml /opt/test/BIDS114_group_aa.xml :
+    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test1:/bids_dataset -v ${HOME}/outputs_advanced1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt /opt/test/BIDS114_group_tasklist.xml /opt/test/BIDS114_test1_group_aa.xml :
         timeout: 86400
     # participant level tests for a longitudinal dataset
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_advanced2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt /opt/test/BIDS114_tasklist.xml /opt/test/BIDS114_test2_aa.xml :
@@ -69,9 +63,7 @@ test:
     - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_advanced2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt /opt/test/BIDS114_tasklist.xml /opt/test/BIDS114_test2_aa.xml :
         timeout: 86400
     # group level test for a longitudinal dataset (two-step approach: 1. update aap, 2 run connection)
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_advanced2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt /opt/test/BIDS114_tasklist.xml /opt/test/BIDS114_test2_aa.xml :
-        timeout: 86400
-    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_advanced2_group:/outputs -v ${HOME}/outputs_advanced2/automaticanalysis:/connection bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt --connection /connection /opt/test/BIDS114_group_tasklist.xml /opt/test/BIDS114_group_aa.xml :
+    - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/Download:/download -v ${HOME}/data/ds114_test2:/bids_dataset -v ${HOME}/outputs_advanced2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --freesurfer_license /download/license.txt /opt/test/BIDS114_group_tasklist.xml /opt/test/BIDS114_test2_group_aa.xml :
         timeout: 86400
 
 deployment:
