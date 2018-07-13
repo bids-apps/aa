@@ -51,7 +51,6 @@
             <module><name>aamod_secondlevel_model</name></module>
             <module><name>aamod_secondlevel_contrasts</name></module>
             <module><name>aamod_secondlevel_threshold</name></module>
-            <module><name>aamod_secondlevel_GIFT</name></module>
         </main>
     </tasklist>
 </aap>
