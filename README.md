@@ -49,27 +49,54 @@ $ docker pull bids/aa
 
 Like a normal docker container, you can startup your container with a single line. 
 
-usage: aa <bids_dir> <output_dir> {participant|group} [--participant_label <participant_label>]
+    usage: run <bids_dir> <output_dir> {participant|group} 
+               [--participant_label <participant_label>] 
+               [--freesurfer_license <license_file>] 
+               [--connection <pipeline to connect to>]
+               [<tasklist> <user_customisation>]
+    
+    positional arguments:
+        <bids_dir>          
+                                The directory with the input dataset formatted
+    				according to the BIDS standard.
+        <output_dir>		  
+                                The directory where the output files should be stored.
+                                If you are running group level analysis this folder
+                                should be prepopulated with the results of the
+                                participant level analysis.
+        {participant|group} 
+                                Level of the analysis that will be performed. Multiple
+                                participant level analyses can be run independently
+                                (in parallel) using the same output_dir.
+    
+    optional arguments:
+        --participant_label <participant_label>
+                                The label(s) of the participant(s) that should be
+                                analyzed. The label corresponds to
+                                sub-<participant_label> from the BIDS spec (so it does
+                                not include "sub-"). If this parameter is not provided
+                                all subjects should be analyzed. Multiple participants
+                                can be specified with a space separated list.
+        --freesurfer_license <license_file>
+                                Path to FreeSurfer license key file. Required if you specify
+                                tasklist with freesurfer modules. To obtain it you
+                                need to register (for free) at
+                                https://surfer.nmr.mgh.harvard.edu/registration.html
+        --connection <pipeline to connect to>
+                                Path to a previously processed pipeline, from where inputs 
+                                will be taken.
+        <tasklist>          
+                                aa tasklist describing the steps (XML file). It also requires
+                                <user_customisation>.
+        <user_customisation>          
+                                Customisation of the provided <tasklist>. It must be an XML
+                                file corresponding to aa's aap structure.
+                                    - Its structure must correspond to that of the aap
+                                      apart from special cases (see later).
+                                    - Index in lists of structures (e.g. aamod_smooth(1))
+                                      can be indicated following to aa practice: 
+                                      e.g. aamod_smooth_00001. Default is 1
+                                    - Special cases
+                                        - firstlevel_contrasts
+                                        - input.isBIDS
 
-positional arguments:
-  <bids_dir>          
-					  The directory with the input dataset formatted
-						according to the BIDS standard.
-  <output_dir>		  
-					  The directory where the output files should be stored.
-						If you are running group level analysis this folder
-						should be prepopulated with the results of the
-						participant level analysis.
-  {participant|group} 
-					  Level of the analysis that will be performed. Multiple
-						participant level analyses can be run independently
-						(in parallel) using the same output_dir.
-
-optional arguments:
-  --participant_label <participant_label>
-					  The label(s) of the participant(s) that should be
-						analyzed. The label corresponds to
-						sub-<participant_label> from the BIDS spec (so it does
-						not include "sub-"). If this parameter is not provided
-						all subjects should be analyzed. Multiple participants
-						can be specified with a space separated list.
