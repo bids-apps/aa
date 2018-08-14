@@ -54,12 +54,12 @@ Like a normal docker container, you can startup your container with a single lin
                [--freesurfer_license <license_file>] 
                [--connection <pipeline to connect to>]
                [<tasklist> <user_customisation>]
-    
+
     positional arguments:
-        <bids_dir>          
+        <bids_dir>
                                 The directory with the input dataset formatted
-    				according to the BIDS standard.
-        <output_dir>		  
+                                according to the BIDS standard.
+        <output_dir>
                                 The directory where the output files should be stored.
                                 If you are running group level analysis this folder
                                 should be prepopulated with the results of the
@@ -68,7 +68,7 @@ Like a normal docker container, you can startup your container with a single lin
                                 Level of the analysis that will be performed. Multiple
                                 participant level analyses can be run independently
                                 (in parallel) using the same output_dir.
-    
+
     optional arguments:
         --participant_label <participant_label>
                                 The label(s) of the participant(s) that should be
@@ -85,10 +85,10 @@ Like a normal docker container, you can startup your container with a single lin
         --connection <pipeline to connect to>
                                 Path to a previously processed pipeline, from where inputs 
                                 will be taken.
-        <tasklist>          
+        <tasklist>
                                 aa tasklist describing the steps (XML file). It also requires
                                 <user_customisation>.
-        <user_customisation>          
+        <user_customisation>
                                 Customisation of the provided <tasklist>. It must be an XML
                                 file corresponding to aa's aap structure.
                                     - Its structure must correspond to that of the aap
