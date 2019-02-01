@@ -5,9 +5,9 @@
         <structdirname desc='Subdirectory in subject dir for MRI structurals' ui='dir'>structurals</structdirname>
         <specialseriesdirname desc='Subdirectory in subject dir for special series' ui='text'>specialseries</specialseriesdirname>
         <eventsdirname  desc='Subdirectory in study, subject and/or session for event files' ui='text'>events</eventsdirname>
-        <rawdatadir desc='Directory to find raw MRI data' ui='dir_list'>/mridata/cbu:/mridata/csl:/mridata/camcan</rawdatadir>
-        <rawmegdatadir desc='Directory to find raw MEG data' ui='dir'>/megdata/cbu/</rawmegdatadir>
-        <T1template desc='Location of T1 template, now relative to SPM path' ui='dir'>templates/T1.nii</T1template>
+        <rawdatadir desc='Directory to find raw MRI data' ui='dir_list'>$HOME/aa/raw:/data:$HOME/data</rawdatadir>
+        <rawmegdatadir desc='Directory to find raw MEG data' ui='dir'>$HOME/aa/megraw:/megdata:$HOME/megdata</rawmegdatadir>
+        <T1template desc='Location of T1 template, now relative to SPM path' ui='dir'>toolbox/OldNorm/T1.nii</T1template>
         <Render desc='Location of Single subject render mash' ui='dir'>rend/render_single_subj.mat</Render>
         <rawdataafterconversionprefix desc='Prefix of raw data after conversion from DICOM to NIFTI' ui='text'>fCBU</rawdataafterconversionprefix>
         <subject_directory_format desc='Format of subject directory' ui='optionlist' options='from subject_directory_names|from data|S#|manual'>3</subject_directory_format>
@@ -31,9 +31,10 @@
         <protocol_t2 ui='text'>t2_spc</protocol_t2>
         <dicomfilter ui='text'>*.dcm</dicomfilter>
         <megsubjectoutputformat desc='sprintf formatting string to get subject directory from number - at CBU meg*_%04d*' ui='text'>meg*_%04d*</megsubjectoutputformat>
-        <dicom_converter desc='Path to custom dicom converter MATLAB function' ui='text'></dicom_converter>
+        <dicom_converter desc='Path to custom dicom converter MATLAB function and optional arguments (all separated with commas)' ui='text'></dicom_converter>
         <spmdir desc="Path(s) to SPM software (>SPM12 r6470 required)" ui="dir"></spmdir>		
-        <spmtoolsdir desc="Path(s) to SPM tools" ui="dir"></spmtoolsdir>
+        <spmtoolsdir desc="Path(s) to SPM tools (colon separated list)" ui="dir"></spmtoolsdir>
+        <linuxshell desc='Linux shell used to run linux commands' ui='text'></linuxshell>
         <fsldir desc='Path to fsl' ui='dir'>/usr/share/fsl/5.0</fsldir>
         <fslsetup desc='Path to fsl setup script, executing before any fsl command' ui='text'></fslsetup>
         <fslshell desc='Shell used to run FSL' ui='text'>csh</fslshell>
@@ -52,8 +53,10 @@
         <fieldtripdir desc='Path to fieltrip toolbox' ui='dir'></fieldtripdir>
         <BrainWaveletdir desc='Path to BrainWavelet toolbox' ui='dir'></BrainWaveletdir>
         <DCMTKdir desc='Path to DICOM Toolkit' ui='dir'></DCMTKdir>
+        <FaceMaskingdir desc='Path to FaceMasking (WUSTL NRG)' ui='dir'></FaceMaskingdir>
         <allowremotecache desc='Allow local caching of files from remote server' ui='optionlist'>1</allowremotecache>
-        <poolprofile desc='MATLAB function to create cluster profile on local machine (should be in your MATLAB path)' ui='dir'></poolprofile>
+        <poolprofile desc='Cluster Profile and (optional) initial submit argument (e.g. asking for specific queue or resource) separated with colon' ui='text'></poolprofile>
+        <mailerserver desc='E-mail address and password (colon-sepertated) for the mailer account for sending notifications' ui='text'>mvpaamailer@gmail.com:mvpaamailer</mailerserver>
         <parallel_dependencies desc='Describes relationships of different domains of processing' ui='custom'>
             <study desc='The whole study (root)' ui='custom'>
                 <subject desc='A subject' ui='custom'>
@@ -97,7 +100,7 @@
         <verbose desc='How verbose to be: 0 - do not show any message; 1 - show errors only; 2 - show every message' ui='double'>2</verbose>
         <timelog desc='Do we print time elapsed after each module?' ui='yesno'>1</timelog>
         <email desc='Send an email when analysis is done or breaks?' ui='text'></email>
-        <NIFTI4D desc='Use NIFTI-4D instead of NIFTI-3D' ui='yesno'>0</NIFTI4D>
+        <NIFTI4D desc='Use NIFTI-4D instead of NIFTI-3D' ui='yesno'>1</NIFTI4D>
         <autoidentifystructural desc='Automatically identify structurals?' ui='yesno'>1</autoidentifystructural>
         <autoidentifystructural_chooselast desc='Automatically select last of structurals when there is more than one?' ui='yesno'>0</autoidentifystructural_chooselast>
         <autoidentifystructural_choosefirst desc='Automatically select first of structurals when there is more than one?' ui='yesno'>0</autoidentifystructural_choosefirst>
@@ -109,7 +112,7 @@
         <autoidentifyt2_average desc='Average across T2 when there is more than one?' ui='yesno'>0</autoidentifyt2_average>
         <autoidentifyt2_multiple desc='We require several T2 to do complex postprocessing on. e.g. MP2RAGE creates 5 images, which can be ultimately transformed into a single one' ui='yesno'>0</autoidentifyt2_multiple>
         <autoidentifyfieldmaps desc='Automatically identify field maps?' ui='yesno'>0</autoidentifyfieldmaps>
-        <autoidentifyfieldmaps_number desc='If field maps exist, how many are there?' ui='double'>2</autoidentifyfieldmaps_number>
+        <autoidentifyfieldmaps_number desc='If field maps exist, how many are there? Positive or negatve number indicates fieldmap after or before EPI, respectively' ui='double'>2</autoidentifyfieldmaps_number>
         <autoidentifytmaps desc='Automatically identify t maps?' ui='yesno'>1</autoidentifytmaps>
         <aa_minver desc='Minimum allowed aa version' ui='double'>5.0.0</aa_minver>
         <aa_maxver desc='Maximum allowed aa version' ui='double'>99.99.99</aa_maxver>
@@ -120,6 +123,9 @@
         <aaworkerGUI desc='Show GUI to monitor parallel workers?' ui='yesno'>1</aaworkerGUI>
         <aaworkerroot desc='Path to folder where folder .aa for execution reports is created' ui='dir'></aaworkerroot>
         <aaworkercleanup desc='Remove aaworker folders older then the specified number of days (Empty means no cleanup)' ui='double'></aaworkercleanup>
+        <aaworkermaximumretry desc='Maximum number of (re)tries to submit job to the scheduler' ui='double'>1</aaworkermaximumretry>
+        <aaworkerwaitbeforeretry desc='If job has been pendign for longer than this value, aa re-ubmit it to the scheduler if aaworkermaximumretry > 1' ui='double'>inf</aaworkerwaitbeforeretry>
+        <aaworkercheckCPU desc='Check job CPU usage (and restart sleeping jobs)?' ui='yesno'>0</aaworkercheckCPU>
         <aaparallel desc='Settings for parallel execution on a cluster (if applicable)' ui='none'>
             <numberofworkers desc='Requested number of workers' ui='double'>8</numberofworkers>
             <memory desc='Requested amount of memory in GB' ui='double'>4</memory>
@@ -163,11 +169,11 @@
     </gui_controls>
     
     <acq_details>
-        <root desc='Root on local machine for processed data' ui='dir'></root>
+        <root desc='Root on local machine for processed data' ui='dir'>$HOME/aa</root>
         <s3>
             <root desc='Root on S3 for processed data' ui='dir'>teststudy</root>
         </s3>
-        <numdummies desc='Number of dummy scans' ui='int'>5</numdummies>
+        <numdummies desc='Number of dummy scans' ui='int'>0</numdummies>
         <topscannumber desc='Ignore EPI scans after this one' ui='int'/>
         
         <input>
