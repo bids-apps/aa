@@ -35,8 +35,8 @@ COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
 
 # MCR
-ENV MATLAB_VERSION R2018a
-ENV MCR_VERSION v94
+ENV MATLAB_VERSION R2018b
+ENV MCR_VERSION v95
 RUN mkdir /opt/Download/mcr_install /opt/mcr && \
     wget --quiet -O /opt/Download/mcr_install.zip http://www.mathworks.com/supportfiles/downloads/${MATLAB_VERSION}/deployment_files/${MATLAB_VERSION}/installers/glnxa64/MCR_${MATLAB_VERSION}_glnxa64_installer.zip && \
     unzip -q /opt/Download/mcr_install.zip -d /opt/Download/mcr_install && \
