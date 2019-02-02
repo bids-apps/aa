@@ -30,7 +30,7 @@ RUN wget -qO- https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/frees
 ENV FS_HOME=/opt/freesurfer
 
 # aa
-RUN wget -qO- "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5c54a7a076653c001b21d037" | tar --no-same-owner -xv -C /opt
+RUN wget -qO- "https://files.osf.io/v1/resources/umhtq/providers/osfstorage/5c559a9be16f550018877973" | tar --no-same-owner -xv -C /opt
 COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 COPY aap_parameters_defaults_BIDS.xml /opt/aap_parameters_defaults_BIDS.xml
 
