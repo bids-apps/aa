@@ -1,4 +1,4 @@
-### aa
+## aa
 BIDS App containing an instance of the **Automatic Analysis**.
 
 Automatic Analysis software was originally developed by Dr Rhodri Cusack
