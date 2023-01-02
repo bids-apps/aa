@@ -1,6 +1,6 @@
 FROM bids/base_validator
 
-MAINTAINER Tibor Auer <tibor.auer@rhul.ac.uk>
+LABEL Tibor Auer <tibor.auer@rhul.ac.uk>
 
 # Install dependencies
 RUN apt-get -qq update && apt-get -qq install -y \
