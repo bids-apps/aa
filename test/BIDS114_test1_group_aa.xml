@@ -8,7 +8,7 @@
         </aaparallel-->
         <NIFTI4D>1</NIFTI4D>
         <email>tibor.auer@rhul.ac.uk</email>
-        
+
         <autoidentifystructural_choosefirst>1</autoidentifystructural_choosefirst>
     </options>
 
@@ -19,7 +19,7 @@
             <combinemultiple>1</combinemultiple>
         </input>
     </acq_details>
-        
+
     <tasksettings>
         <aamod_norm8>
             <vox>1</vox>
@@ -51,7 +51,7 @@
             </threshold>
         </aamod_secondlevel_threshold>
     </tasksettings>
-    
+
     <firstlevel_contrasts>
         <con1>
             <subject>*</subject>
@@ -73,7 +73,7 @@
             <vector>0 0 1</vector>
             <name>Loc_Lips</name>
             <type>T</type>
-        </con3>			
+        </con3>
         <con4>
             <subject>*</subject>
             <format>singlesession:line_bisection</format>
@@ -103,5 +103,5 @@
             <type>T</type>
         </con7>
     </firstlevel_contrasts>
-    
+
 </aap>

@@ -47,11 +47,11 @@ $ docker pull bids/aa
 
 **Now we're ready to launch our instances and process some data!**
 
-Like a normal docker container, you can startup your container with a single line. 
+Like a normal docker container, you can startup your container with a single line.
 
-    usage: run <bids_dir> <output_dir> {participant|group} 
-               [--participant_label <participant_label>] 
-               [--freesurfer_license <license_file>] 
+    usage: run <bids_dir> <output_dir> {participant|group}
+               [--participant_label <participant_label>]
+               [--freesurfer_license <license_file>]
                [--connection <pipeline to connect to>]
                [<tasklist> <user_customisation>]
 
@@ -64,7 +64,7 @@ Like a normal docker container, you can startup your container with a single lin
                                 If you are running group level analysis this folder
                                 should be prepopulated with the results of the
                                 participant level analysis.
-        {participant|group} 
+        {participant|group}
                                 Level of the analysis that will be performed. Multiple
                                 participant level analyses can be run independently
                                 (in parallel) using the same output_dir.
@@ -83,7 +83,7 @@ Like a normal docker container, you can startup your container with a single lin
                                 need to register (for free) at
                                 https://surfer.nmr.mgh.harvard.edu/registration.html
         --connection <pipeline to connect to>
-                                Path to a previously processed pipeline, from where inputs 
+                                Path to a previously processed pipeline, from where inputs
                                 will be taken.
         <tasklist>
                                 aa tasklist describing the steps (XML file). It also requires
@@ -94,9 +94,8 @@ Like a normal docker container, you can startup your container with a single lin
                                     - Its structure must correspond to that of the aap
                                       apart from special cases (see later).
                                     - Index in lists of structures (e.g. aamod_smooth(1))
-                                      can be indicated following to aa practice: 
+                                      can be indicated following to aa practice:
                                       e.g. aamod_smooth_00001. Default is 1
                                     - Special cases
                                         - firstlevel_contrasts
                                         - input.isBIDS
-

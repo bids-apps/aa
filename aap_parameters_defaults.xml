@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<aap>    
+<aap>
     <directory_conventions>
         <fieldmapsdirname desc='Subdirectory in subject dir for fieldmaps' ui='dir'>fieldmaps</fieldmapsdirname>
         <structdirname desc='Subdirectory in subject dir for MRI structurals' ui='dir'>structurals</structdirname>
@@ -32,7 +32,7 @@
         <dicomfilter ui='text'>*.dcm</dicomfilter>
         <megsubjectoutputformat desc='sprintf formatting string to get subject directory from number - at CBU meg*_%04d*' ui='text'>meg*_%04d*</megsubjectoutputformat>
         <dicom_converter desc='Path to custom dicom converter MATLAB function and optional arguments (all separated with commas)' ui='text'></dicom_converter>
-        <spmdir desc="Path(s) to SPM software (>SPM12 r6470 required)" ui="dir"></spmdir>		
+        <spmdir desc="Path(s) to SPM software (>SPM12 r6470 required)" ui="dir"></spmdir>
         <spmtoolsdir desc="Path(s) to SPM tools (colon separated list)" ui="dir"></spmtoolsdir>
         <linuxshell desc='Linux shell used to run linux commands' ui='text'></linuxshell>
         <fsldir desc='Path to fsl' ui='dir'>/usr/share/fsl/5.0</fsldir>
@@ -61,34 +61,34 @@
             <study desc='The whole study (root)' ui='custom'>
                 <subject desc='A subject' ui='custom'>
                     <session desc='A session' ui='custom'>
-                        <scan desc='A scan (currently just for realtime)' ui='custom'> 
+                        <scan desc='A scan (currently just for realtime)' ui='custom'>
                         </scan>
                         <searchlight_package desc='A searchlight' ui='custom'/>
                         <splitsession_cv_fold desc='Split session cross validation fold' ui='custom'></splitsession_cv_fold>
                     </session>
-                    <meg_session desc='MEG acquisition' ui='custom'></meg_session>                        
+                    <meg_session desc='MEG acquisition' ui='custom'></meg_session>
                     <diffusion_session desc='Diffusion acquisition' ui='custom'>
                         <diffusion_session_phaseencode_direction desc='Diffusion phase encoding direction' ui='custom'></diffusion_session_phaseencode_direction>
-                    </diffusion_session>                        
+                    </diffusion_session>
                     <diffusion_session_bedpostx desc='Diffusion bedpostx' ui='custom'>
                         <diffusion_session_probtrackx desc='Probablistic tractography' ui='custom'>
                         </diffusion_session_probtrackx>
                     </diffusion_session_bedpostx>
-                    <special_session desc='Special/Undefined acquisition' ui='custom'></special_session>                        
+                    <special_session desc='Special/Undefined acquisition' ui='custom'></special_session>
                 </subject>
                 <hyperalignment_searchlight_package desc='A searchlight containing multiple subjects' ui='custom'>
-                    <hyperalignment_subject desc='One subject of one searchlight' ui='custom'>                        
+                    <hyperalignment_subject desc='One subject of one searchlight' ui='custom'>
                     </hyperalignment_subject>
                 </hyperalignment_searchlight_package>
                 <isc_session desc='inter-subject correlation for a session' ui='custom'>
                     <isc_subject desc='inter-subject correlation, single subject within a session' ui='custom'>
                     </isc_subject>
                 </isc_session>
-                
+
                 <splitsession_cv_fold_hyper desc='Hyperalignment of an ROI' ui='custom'>
                 </splitsession_cv_fold_hyper>
             </study>
-            
+
         </parallel_dependencies>
         <realtime>
             <path desc='Directory for realtime data' ui='dir'>/home/rcusack/realtime</path>
@@ -106,7 +106,7 @@
         <autoidentifystructural_choosefirst desc='Automatically select first of structurals when there is more than one?' ui='yesno'>0</autoidentifystructural_choosefirst>
         <autoidentifystructural_average desc='Average across structurals when there is more than one?' ui='yesno'>0</autoidentifystructural_average>
         <autoidentifystructural_multiple desc='We require several structurals to do complex postprocessing on. e.g. MP2RAGE creates 5 images, which can be ultimately transformed into a single one' ui='yesno'>0</autoidentifystructural_multiple>
-        <autoidentifyt2 desc='Automatically identify T2?' ui='yesno'>0</autoidentifyt2>		
+        <autoidentifyt2 desc='Automatically identify T2?' ui='yesno'>0</autoidentifyt2>
         <autoidentifyt2_chooselast desc='Automatically select last of T2 when there is more than one?' ui='yesno'>0</autoidentifyt2_chooselast>
         <autoidentifyt2_choosefirst desc='Automatically select first of T2 when there is more than one?' ui='yesno'>0</autoidentifyt2_choosefirst>
         <autoidentifyt2_average desc='Average across T2 when there is more than one?' ui='yesno'>0</autoidentifyt2_average>
@@ -152,7 +152,7 @@
         </realtime>
         <diagnostic_videos desc='Enable diagnostic videos (matlab not stable on some platforms)' ui='yesno'>0</diagnostic_videos>
     </options>
-    
+
     <gui_controls>
         <usecolouroutput desc='use colour to organise text output written to display' ui='yesno'>1</usecolouroutput>
         <colours>
@@ -164,10 +164,10 @@
             <warning desc='Fontcolour for warning' ui='rgb'>1 0.33 0</warning>
             <info desc='Fontcolour for information' ui='rgb'>0 0.5 0</info>
             <inputstreams ui='rgb'>0.5 0.5 0.5</inputstreams>
-            <outputstreams ui='rgb'>0.5 0.5 0.5</outputstreams>            
+            <outputstreams ui='rgb'>0.5 0.5 0.5</outputstreams>
         </colours>
     </gui_controls>
-    
+
     <acq_details>
         <root desc='Root on local machine for processed data' ui='dir'>$HOME/aa</root>
         <s3>
@@ -175,7 +175,7 @@
         </s3>
         <numdummies desc='Number of dummy scans' ui='int'>0</numdummies>
         <topscannumber desc='Ignore EPI scans after this one' ui='int'/>
-        
+
         <input>
             <list desc='List of subjects and sessions' ui='dir'></list>
             <combinemultiple desc='Combine multiple entries/visits into one?' ui='yesno'>0</combinemultiple>
@@ -183,7 +183,7 @@
             <referencedirectory_tmpl desc='Directory contining event references in SPM format' ui='dir_allowwildcards'></referencedirectory_tmpl>
             <correctEVfordummies desc='Automatically correct event onset time according for dummies?' ui='yesno'>1</correctEVfordummies>
         </input>
-        
+
         <subjects>
             <subjname desc='Subject foldername' ui='dir'/>
             <mriname desc='Subject MRI filename' ui='dir_part_allowwildcards'/>
@@ -192,7 +192,7 @@
             <wholebrain_epi desc='Session number or filename for wholebrain EPI (for partial volume EPI)' ui='int'/>
             <fieldmaps desc='Session numbers or filename for fieldmaps' ui='intarray'/>
             <seriesnumbers desc='Session numbers or filename for EPI' ui='intarray' />
-            <megseriesnumbers desc='Session numbers for MEG' ui='intarray' />           
+            <megseriesnumbers desc='Session numbers for MEG' ui='intarray' />
             <diffusion_seriesnumbers desc='Session numbers for diffusion data' ui='intarray' />
             <tmaps desc='Real time t maps session number in raw data' ui='int'/>
             <specialseries desc='special series session number in raw data' ui='int'/>
@@ -210,14 +210,14 @@
         <selected_sessions desc='Allows subselection of a subset of series, usually during branching' ui='intarray'/>
         <special_sessions desc='Special sessions' ui='intarray'>
             <name desc='Special session name (used to determine stream name and folder name)' ui='dir_part'/>
-        </special_sessions>        
+        </special_sessions>
     </acq_details>
-    
+
     <timeouts>
         <starting desc='timeout period for spm startup (mins)' ui='int'>2</starting>
-        <joballocated desc='timeout period for worker prepare (mins)' ui='int'>2</joballocated> 
+        <joballocated desc='timeout period for worker prepare (mins)' ui='int'>2</joballocated>
         <busy desc='timeout period for worker job (mins)' ui='int'>600</busy>
         <bored desc='timeout period for bored worker (mins)' ui='int'>10</bored>
-    </timeouts>      
-    
+    </timeouts>
+
 </aap>

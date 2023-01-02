@@ -7,7 +7,7 @@
             <numberofworkers>4</numberofworkers>
         </aaparallel-->
         <NIFTI4D>1</NIFTI4D>
-        
+
         <autoidentifystructural_choosefirst>1</autoidentifystructural_choosefirst>
     </options>
 
@@ -18,7 +18,7 @@
             <combinemultiple>1</combinemultiple>
         </input>
     </acq_details>
-        
+
     <tasksettings>
         <aamod_norm8>
             <vox>1</vox>
@@ -37,5 +37,5 @@
             <includemovementpars>1</includemovementpars>
         </aamod_firstlevel_model>
     </tasksettings>
-   
+
 </aap>

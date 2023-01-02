@@ -3,11 +3,11 @@
     <tasklist>
         <initialisation>
             <module><name>aamod_checkparameters</name></module>
-            <module><name>aamod_evaluatesubjectnames</name></module>            
+            <module><name>aamod_evaluatesubjectnames</name></module>
             <module><name>aamod_study_init</name></module>
             <module><name>aamod_newsubj_init</name></module>
         </initialisation>
-        
+
         <main>
             <!-- Data -->
             <module><name>aamod_structuralfromnifti</name></module>
@@ -16,21 +16,21 @@
             <module><name>aamod_reorienttomiddle_structural</name></module>
             <module><name>aamod_reorienttomiddle_epi</name></module>
             <module><name>aamod_tsdiffana</name></module>
-            
+
             <!-- Structural -->
             <module><name>aamod_biascorrect_structural</name></module>
             <module><name>aamod_coreg_extended_1</name></module>
-            
+
             <module><name>aamod_norm8</name></module>
-            
+
             <!-- Functional -->
             <module><name>aamod_realign</name></module>
             <module><name>aamod_slicetiming</name></module>
             <module><name>aamod_coreg_extended_2epi</name></module>
-            <module><name>aamod_norm_write</name></module> 
+            <module><name>aamod_norm_write</name></module>
             <module><name>aamod_smooth</name></module>
             <module><name>aamod_tsdiffana</name></module>
-            
+
             <module><name>aamod_firstlevel_model</name></module>
         </main>
     </tasklist>

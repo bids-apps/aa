@@ -5,7 +5,7 @@ setenv FSLOUTPUTTYPE NIFTI
 setenv FSLMULTIFILEQUIT TRUE
 setenv POSSUMDIR ${FSLDIR}
 
-# if (! $?LD_LIBRARY_PATH) then       
+# if (! $?LD_LIBRARY_PATH) then
 #   setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0
 # else
 #   setenv LD_LIBRARY_PATH /usr/lib/fsl/5.0:${LD_LIBRARY_PATH}

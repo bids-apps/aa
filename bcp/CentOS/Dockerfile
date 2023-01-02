@@ -19,7 +19,7 @@ RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 ADD aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
 ADD aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
 
-RUN yum -y install raptor 
+RUN yum -y install raptor
 RUN wget -O /etc/yum.repos.d/graphviz-rhel.repo http://www.graphviz.org/graphviz-rhel.repo
 RUN yum -y install epel-release
 RUN yum -y install graphviz
@@ -37,7 +37,7 @@ RUN tar -xzf /opt/Download/freesurfer.tar.gz -C /opt
 RUN echo "krzysztof.gorgolewski@gmail.com\n5172\n *CvumvEV3zTfg" > /opt/freesurfer/.license
 RUN echo 'export FSL_DIR=$FSLDIR' > /opt/bin/freesurfer_bash
 RUN echo 'export FSF_OUTPUT_FORMAT=nii' >> /opt/bin/freesurfer_bash
-RUN echo 'export FREESURFER_HOME=/opt/freesurfer' >> /opt/bin/freesurfer_bash 
+RUN echo 'export FREESURFER_HOME=/opt/freesurfer' >> /opt/bin/freesurfer_bash
 RUN echo 'source $FREESURFER_HOME/FreeSurferEnv.sh' >> /opt/bin/freesurfer_bash
 RUN yum -y install tcsh bc libjpeg
 

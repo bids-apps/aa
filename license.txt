@@ -1,7 +1,7 @@
 *Automatic Analysis Software
 *Licence Agreement
 
-Automatic Analysis software was initially developed by Dr Rhodri Cusack for supporting research at the MRC Cognition and Brain Science Unit. It is made available to the academic community in the hope that it may prove useful.  
+Automatic Analysis software was initially developed by Dr Rhodri Cusack for supporting research at the MRC Cognition and Brain Science Unit. It is made available to the academic community in the hope that it may prove useful.
 
 Definitions:
 
