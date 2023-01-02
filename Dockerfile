@@ -2,8 +2,10 @@ FROM bids/base_validator
 
 LABEL Tibor Auer <tibor.auer@rhul.ac.uk>
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 # Install dependencies
-RUN apt-get -qq update && apt-get -qq install -y \
+RUN apt-get update -qq && apt-get install -q -y --no-install-recommends \
     unzip xorg wget rsync csh tcsh bc libgomp1 perl-modules && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir /opt/bin /opt/Download
