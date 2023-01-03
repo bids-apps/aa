@@ -66,6 +66,10 @@ jobs:
     machine:
       image: ubuntu-2204:2022.10.2
 
+    parameters:
+      dataset:
+        type: string
+
     steps:
     - attach_workspace:
         at: /tmp/workspace
@@ -77,164 +81,87 @@ jobs:
         name: Print version
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v ${HOME}/data/ds114_test<< parameters.dataset >>:/bids_dataset \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 --version
 
-    - run: mkdir -p ${HOME}/outputs_basic1
-          # participant level tests for single session dataset
+    - run: mkdir -p ${HOME}/outputs_basic<< parameters.dataset >>
     - run:
         name: Basic use case (default pipeline - structural and task-based functional only)
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs participant --participant_label 01
         no_output_timeout: 6h
     - run:
         name: participant_label 02
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs participant --participant_label 02
         no_output_timeout: 6h
     - run:
         name: group level
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs group
         no_output_timeout: 6h
 
-    - run: mkdir -p ${HOME}/outputs_basic2
-    - run:
-        name: participant level 01 tests for a longitudinal dataset
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-            -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
-              /bids_dataset /outputs participant --participant_label 01
-        no_output_timeout: 6h
-    - run:
-        name: participant_label 02
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-            -v ${HOME}/outputs_basic2:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,}
-                /bids_dataset /outputs participant --participant_label 02
-        no_output_timeout: 6h
-    - run:
-        name: group level
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-              -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-              -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs group
-        no_output_timeout: 6h
+  test_advanced:
+    machine:
+      image: ubuntu-2204:2022.10.2
 
-    - run: mkdir -p ${HOME}/outputs_advanced1
+    parameters:
+      dataset:
+        type: string
+
+    steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - run:
+        command: |
+          docker load -i /tmp/workspace/docker/image.tar
+
+    - run: mkdir -p ${HOME}/outputs_advanced<< parameters.dataset >>
     - run:
         name: Advanced use case (configured pipeline)
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_advanced1:/outputs \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt \
                 /opt/test/BIDS114_tasklist.xml \
-                /opt/test/BIDS114_test1_aa.xml
+                /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
         no_output_timeout: 6h
     - run:
         name: participant_label 02
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_advanced1:/outputs \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt \
                 /opt/test/BIDS114_tasklist.xml \
-                /opt/test/BIDS114_test1_aa.xml
+                /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
         no_output_timeout: 6h
-
     - run:
         name: 'group level test for single session dataset (two-step approach: 1. update aap, 2 run connection)'
         command: |
           docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
-            -v ${HOME}/outputs_advanced1:/outputs \
+            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs group --freesurfer_license /download/license.txt \
                 /opt/test/BIDS114_group_tasklist.xml \
-                /opt/test/BIDS114_test1_group_aa.xml
-        no_output_timeout: 6h
-          # participant level tests for a longitudinal dataset
-
-    - run: mkdir -p ${HOME}/outputs_advanced2
-    - run:
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v ${HOME}/Download:/download \
-            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-            -v ${HOME}/outputs_advanced2:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt \
-                /opt/test/BIDS114_tasklist.xml \
-                /opt/test/BIDS114_test2_aa.xml
-        no_output_timeout: 6h
-    - run:
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-              -v ${HOME}/Download:/download \
-              -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-              -v ${HOME}/outputs_advanced2:/outputs \
-                bids/${CIRCLE_PROJECT_REPONAME,,} \
-                  /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt \
-                  /opt/test/BIDS114_tasklist.xml \
-                  /opt/test/BIDS114_test2_aa.xml
-        no_output_timeout: 6h
-          # group level test for a longitudinal dataset (two-step approach: 1. update aap, 2 run connection)
-    - run:
-        command: |
-          docker run -ti --rm \
-            -v /tmp:/tmp \
-            -v /var/tmp:/var/tmp \
-            -v ${HOME}/Download:/download \
-            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
-            -v ${HOME}/outputs_advanced2:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs group --freesurfer_license /download/license.txt \
-                /opt/test/BIDS114_group_tasklist.xml \
-                /opt/test/BIDS114_test2_group_aa.xml
+                /opt/test/BIDS114_test<< parameters.dataset >>_group_aa.xml
         no_output_timeout: 6h
 
   deployment:
@@ -249,8 +176,9 @@ jobs:
         name: push to dockerhub
         command: |
           docker login --username ${DOCKER_USER} --password ${DOCKER_PASS}
-          docker push bids/${CIRCLE_PROJECT_REPONAME,,}:latest
+          docker push bids/${CIRCLE_PROJECT_REPONAME,,}:unstable
           if [[ -n "${CIRCLE_TAG}" ]]; then
+            docker push bids/${CIRCLE_PROJECT_REPONAME,,}:latest
             docker tag bids/${CIRCLE_PROJECT_REPONAME,,} bids/${CIRCLE_PROJECT_REPONAME,,}:${CIRCLE_TAG}
             docker push bids/${CIRCLE_PROJECT_REPONAME,,}:${CIRCLE_TAG}
           fi
@@ -266,15 +194,26 @@ workflows:
     - test:
         requires:
         - build
+        matrix:
+          parameters:
+            dataset: ['01', '02']
+        filters:
+          tags:
+            only: /.*/
+    - test_advanced:
+        requires:
+        - build
+        matrix:
+          parameters:
+            dataset: ['01', '02']
         filters:
           tags:
             only: /.*/
     - deployment:
         requires:
-        - build
+        - test
+        - test_advanced
         filters:
-          branches:
-            ignore: /.*/
           tags:
             only: /.*/
 # VS Code Extension Version: 1.5.1
