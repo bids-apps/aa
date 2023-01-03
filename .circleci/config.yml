@@ -57,7 +57,8 @@ jobs:
     - persist_to_workspace:
         root: /home/circleci
         paths:
-        - data/
+        - data/ds114_test1
+        - data/ds114_test2
         - docker/image.tar
         - Download/freesurfer/license.txt
 
@@ -90,7 +91,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs participant --participant_label 01
         no_output_timeout: 6h
@@ -100,7 +101,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs participant --participant_label 02
         no_output_timeout: 6h
@@ -110,7 +111,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_basic1:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs group
         no_output_timeout: 6h
@@ -122,7 +123,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test2:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
             -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
               /bids_dataset /outputs participant --participant_label 01
         no_output_timeout: 6h
@@ -132,7 +133,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-            -v ${HOME}/data/ds114_test2:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
             -v ${HOME}/outputs_basic2:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,}
                 /bids_dataset /outputs participant --participant_label 02
@@ -143,7 +144,7 @@ jobs:
           docker run -ti --rm \
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
-              -v ${HOME}/data/ds114_test2:/bids_dataset \
+              -v /tmp/workspace/data/ds114_test2:/bids_dataset \
               -v ${HOME}/outputs_basic2:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs group
         no_output_timeout: 6h
@@ -156,7 +157,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_advanced1:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt \
@@ -170,7 +171,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_advanced1:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt \
@@ -185,7 +186,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v ${HOME}/data/ds114_test1:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test1:/bids_dataset \
             -v ${HOME}/outputs_advanced1:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs group --freesurfer_license /download/license.txt \
@@ -201,7 +202,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v ${HOME}/data/ds114_test2:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
             -v ${HOME}/outputs_advanced2:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt \
@@ -214,7 +215,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
               -v ${HOME}/Download:/download \
-              -v ${HOME}/data/ds114_test2:/bids_dataset \
+              -v /tmp/workspace/data/ds114_test2:/bids_dataset \
               -v ${HOME}/outputs_advanced2:/outputs \
                 bids/${CIRCLE_PROJECT_REPONAME,,} \
                   /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt \
@@ -228,7 +229,7 @@ jobs:
             -v /tmp:/tmp \
             -v /var/tmp:/var/tmp \
             -v ${HOME}/Download:/download \
-            -v ${HOME}/data/ds114_test2:/bids_dataset \
+            -v /tmp/workspace/data/ds114_test2:/bids_dataset \
             -v ${HOME}/outputs_advanced2:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs group --freesurfer_license /download/license.txt \
