@@ -16,8 +16,8 @@ RUN /opt/Download/mcr/install -inputFile /opt/Download/MCR_installer_input.txt
 RUN wget -O /opt/Download/aa.tar.gz https://googledrive.com/host/0B9T4a0ktPmB1R2FJRjVNa19JVTQ/automaticanalysis5.tar.gz #https://ndownloader.figshare.com/files/5590577?private_link=eee1c8631ce8697f7133
 RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
-ADD aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
-ADD aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
+COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
+COPY aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
 
 RUN yum -y install raptor
 RUN wget -O /etc/yum.repos.d/graphviz-rhel.repo http://www.graphviz.org/graphviz-rhel.repo
@@ -45,7 +45,7 @@ RUN yum -y install tcsh bc libjpeg
 RUN rm -rf /opt/Download
 
 # Test
-ADD test /opt/test
+COPY test /opt/test
 
 # CRN
 RUN mkdir /oasis
@@ -55,8 +55,8 @@ RUN mkdir /local-scratch
 
 # Entry
 RUN mkdir /opt/bin
-ADD run.sh /opt/bin/run.sh
-ADD look_for_arg.sh /opt/bin/look_for_arg.sh
+COPY run.sh /opt/bin/run.sh
+COPY look_for_arg.sh /opt/bin/look_for_arg.sh
 RUN chmod +x /opt/bin/*
 
 ENTRYPOINT ["/opt/bin/run.sh"]

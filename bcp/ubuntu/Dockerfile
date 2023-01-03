@@ -15,8 +15,8 @@ RUN mkdir /opt/bin
 RUN mkdir /opt/Download
 
 # Configuration files for FSL and FS0
-ADD fsl_csh /opt/bin/fsl_csh
-ADD freesurfer_bash /opt/bin/freesurfer_bash
+COPY fsl_csh /opt/bin/fsl_csh
+COPY freesurfer_bash /opt/bin/freesurfer_bash
 
 # aa - compile with dependecies
 RUN wget -O /opt/Download/mcr.zip http://uk.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip
@@ -27,24 +27,24 @@ RUN /opt/Download/mcr/install -inputFile /opt/Download/MCR_installer_input.txt
 
 RUN echo "deb http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
 RUN echo "deb-src http://download.librdf.org/binaries/ubuntu/hoary ./" >> /etc/apt/sources.list
-wget -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
+RUN wget -O /opt/Download/gnup.asc http://purl.org/net/dajobe/gnupg.asc && apt-key add - < /opt/Download/gnup.asc
 RUN apt-get update -y && apt-get install -y raptor-utils graphviz
 
 RUN wget -O /opt/Download/aa.tar.gz https://googledrive.com/host/0B9T4a0ktPmB1R2FJRjVNa19JVTQ/automaticanalysis5.tar.gz #https://ndownloader.figshare.com/files/5590577?private_link=eee1c8631ce8697f7133
 RUN tar -xzf /opt/Download/aa.tar.gz -C /opt
 
-ADD aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
-ADD aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
+COPY aap_parameters_defaults.xml /opt/aap_parameters_defaults.xml
+COPY aap_parameters_defaults_CRN.xml /opt/aap_parameters_defaults_CRN.xml
 
 # Cleanup
 RUN rm -rf /opt/Download
 
 # Test
-ADD test /opt/test
+COPY test /opt/test
 
 # Entry
-ADD run.sh /opt/bin/run.sh
-ADD look_for_arg.sh /opt/bin/look_for_arg.sh
+COPY run.sh /opt/bin/run.sh
+COPY look_for_arg.sh /opt/bin/look_for_arg.sh
 RUN chmod +x /opt/bin/*
 
 # COPY version /version
