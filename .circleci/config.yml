@@ -52,8 +52,8 @@ jobs:
         command: |
           mkdir -p ${HOME}/Download/freesurfer
           echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiBGUzk2cFBLNXZXLjBnXG4iID4gJHtIT01FfS9Eb3dubG9hZC9saWNlbnNlLnR4dAo=" | base64 -d | sh
+          cp license.txt ${HOME}/Download/freesurfer
           ls -l ${HOME}/Download/freesurfer
-          ls -l
           
     - save_cache:
         key: my_cache
