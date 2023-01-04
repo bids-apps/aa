@@ -52,7 +52,9 @@ jobs:
         command: |
           mkdir -p ${HOME}/Download/freesurfer
           echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiBGUzk2cFBLNXZXLjBnXG4iID4gJHtIT01FfS9Eb3dubG9hZC9saWNlbnNlLnR4dAo=" | base64 -d | sh
-
+          ls -l ${HOME}/Download/freesurfer
+          ls -l
+          
     - save_cache:
         key: my_cache
         paths:
@@ -143,7 +145,8 @@ jobs:
             -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
             -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 01 --freesurfer_license /download/license.txt \
+                /bids_dataset /outputs participant --participant_label 01 \
+                --freesurfer_license /download/license.txt \
                 /opt/test/BIDS114_tasklist.xml \
                 /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
         no_output_timeout: 6h
@@ -155,7 +158,8 @@ jobs:
             -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
             -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 02 --freesurfer_license /download/license.txt \
+                /bids_dataset /outputs participant --participant_label 02 \
+                --freesurfer_license /download/license.txt \
                 /opt/test/BIDS114_tasklist.xml \
                 /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
         no_output_timeout: 6h
@@ -167,7 +171,8 @@ jobs:
             -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
             -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
               bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs group --freesurfer_license /download/license.txt \
+                /bids_dataset /outputs group --freesurfer_license \
+                /download/license.txt \
                 /opt/test/BIDS114_group_tasklist.xml \
                 /opt/test/BIDS114_test<< parameters.dataset >>_group_aa.xml
         no_output_timeout: 6h
