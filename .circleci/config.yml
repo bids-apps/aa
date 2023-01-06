@@ -66,7 +66,7 @@ jobs:
           name: Print version
           command: |
             docker run -ti --rm \
-              -v ${HOME}/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
                 bids/${CIRCLE_PROJECT_REPONAME,,} \
                   --version
 
