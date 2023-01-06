@@ -7,45 +7,45 @@ jobs:
       # https://circleci.com/developer/machine/image/ubuntu-2204
       image: ubuntu-2204:2022.10.2
     steps:
-    - checkout
-    - restore_cache:
-        keys:
-        - my_cache
-    - run:
-        name: Get test data ds114_test1
-        command: |
-          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/get_ds114_test1.sh
-          bash get_ds114_test1.sh 
-    - run:
-        name: Get test data ds114_test2
-        command: |
-          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/get_ds114_test2.sh
-          bash get_ds114_test2.sh 
-    - run:
-        name: Build Docker image
-        command: |
-          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/build_docker.sh
-          bash build_docker.sh         
-        no_output_timeout: 6h
-    - run:
-        name: freesurfer license
-        command: |
-          mkdir -p ${HOME}/Download/freesurfer
-          echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiBGUzk2cFBLNXZXLjBnXG4iID4gJHtIT01FfS9Eb3dubG9hZC9saWNlbnNlLnR4dAo=" | base64 -d | sh
-          cp license.txt ${HOME}/Download/freesurfer
-          ls -l ${HOME}/Download/freesurfer
-    - save_cache:
-        key: my_cache
-        paths:
-        - ~/docker
-        - ~/data
-    - persist_to_workspace:
-        root: /home/circleci
-        paths:
-        - data/ds114_test1
-        - data/ds114_test2
-        - docker/image.tar
-        - Download/freesurfer/license.txt
+      - checkout
+      - restore_cache:
+          keys:
+            - my_cache
+      - run:
+          name: Get test data ds114_test1
+          command: |
+            wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/get_ds114_test1.sh
+            bash get_ds114_test1.sh
+      - run:
+          name: Get test data ds114_test2
+          command: |
+            wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/get_ds114_test2.sh
+            bash get_ds114_test2.sh
+      - run:
+          name: Build Docker image
+          command: |
+            wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/build_docker.sh
+            bash build_docker.sh
+          no_output_timeout: 6h
+      - run:
+          name: freesurfer license
+          command: |
+            mkdir -p ${HOME}/Download/freesurfer
+            echo "cHJpbnRmICJ0aWJvci5hdWVyQGdtYWlsLmNvbVxuNzA2MVxuICpDY3BpNng3UEFJZVFcbiBGUzk2cFBLNXZXLjBnXG4iID4gJHtIT01FfS9Eb3dubG9hZC9saWNlbnNlLnR4dAo=" | base64 -d | sh
+            cp license.txt ${HOME}/Download/freesurfer
+            ls -l ${HOME}/Download/freesurfer
+      - save_cache:
+          key: my_cache
+          paths:
+            - ~/docker
+            - ~/data
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - docker/image.tar
+            - data/ds114_test1
+            - data/ds114_test2
+            - Download/freesurfer/license.txt
 
   test:
     machine:
@@ -56,48 +56,50 @@ jobs:
         type: string
 
     steps:
-    - attach_workspace:
-        at: /tmp/workspace
-    - run:
-        command: |
-          docker load -i /tmp/workspace/docker/image.tar
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          command: |
+            docker load -i /tmp/workspace/docker/image.tar
 
-    - run:
-        name: Print version
-        command: |
-          docker run -ti --rm \
-            -v ${HOME}/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                --version
+      - run:
+          name: Print version
+          command: |
+            docker run -ti --rm \
+              -v ${HOME}/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  --version
 
-    - run: mkdir -p ${HOME}/outputs_basic<< parameters.dataset >>
-    - run:
-        name: Basic use case (default pipeline - structural and task-based functional only)
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 01
-        no_output_timeout: 6h
-    - run:
-        name: participant_label 02
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 02
-        no_output_timeout: 6h
-    - run:
-        name: group level
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs group
-        no_output_timeout: 6h
+      - run: mkdir -p ${HOME}/outputs_basic<< parameters.dataset >>
+      - run:
+          name:
+            Basic use case (default pipeline - structural and task-based
+            functional only)
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs participant --participant_label 01
+          no_output_timeout: 6h
+      - run:
+          name: participant_label 02
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs participant --participant_label 02
+          no_output_timeout: 6h
+      - run:
+          name: group level
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_basic<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs group
+          no_output_timeout: 6h
 
   test_advanced:
     machine:
@@ -108,97 +110,97 @@ jobs:
         type: string
 
     steps:
-    - attach_workspace:
-        at: /tmp/workspace
-    - run:
-        command: |
-          docker load -i /tmp/workspace/docker/image.tar
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          command: |
+            docker load -i /tmp/workspace/docker/image.tar
 
-    - run: mkdir -p ${HOME}/outputs_advanced<< parameters.dataset >>
-    - run:
-        name: Advanced use case (configured pipeline)
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/Download:/download \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 01 \
-                --freesurfer_license /download/license.txt \
-                /opt/test/BIDS114_tasklist.xml \
-                /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
-        no_output_timeout: 6h
-    - run:
-        name: participant_label 02
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/Download:/download \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs participant --participant_label 02 \
-                --freesurfer_license /download/license.txt \
-                /opt/test/BIDS114_tasklist.xml \
-                /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
-        no_output_timeout: 6h
-    - run:
-        name: 'group level test for single session dataset (two-step approach: 1. update aap, 2 run connection)'
-        command: |
-          docker run -ti --rm \
-            -v /tmp/workspace/Download:/download \
-            -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
-            -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
-              bids/${CIRCLE_PROJECT_REPONAME,,} \
-                /bids_dataset /outputs group --freesurfer_license \
-                /download/license.txt \
-                /opt/test/BIDS114_group_tasklist.xml \
-                /opt/test/BIDS114_test<< parameters.dataset >>_group_aa.xml
-        no_output_timeout: 6h
+      - run: mkdir -p ${HOME}/outputs_advanced<< parameters.dataset >>
+      - run:
+          name: Advanced use case (configured pipeline)
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/Download:/download \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs participant --participant_label 01 \
+                  --freesurfer_license /download/license.txt \
+                  /opt/test/BIDS114_tasklist.xml \
+                  /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
+          no_output_timeout: 6h
+      - run:
+          name: participant_label 02
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/Download:/download \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs participant --participant_label 02 \
+                  --freesurfer_license /download/license.txt \
+                  /opt/test/BIDS114_tasklist.xml \
+                  /opt/test/BIDS114_test<< parameters.dataset >>_aa.xml
+          no_output_timeout: 6h
+      - run:
+          name:
+            "group level test for single session dataset (two-step approach: 1.
+            update aap, 2 run connection)"
+          command: |
+            docker run -ti --rm \
+              -v /tmp/workspace/Download:/download \
+              -v /tmp/workspace/data/ds114_test<< parameters.dataset >>:/bids_dataset \
+              -v ${HOME}/outputs_advanced<< parameters.dataset >>:/outputs \
+                bids/${CIRCLE_PROJECT_REPONAME,,} \
+                  /bids_dataset /outputs group --freesurfer_license \
+                  /download/license.txt \
+                  /opt/test/BIDS114_group_tasklist.xml \
+                  /opt/test/BIDS114_test<< parameters.dataset >>_group_aa.xml
+          no_output_timeout: 6h
 
-  deployment:
-    docker:
-    - image: circleci/buildpack-deps:stretch
+  deploy:
+    machine:
+      image: ubuntu-2204:2022.10.2
     steps:
-    - attach_workspace:
-        at: /tmp/workspace
-
-    - run: docker load -i /tmp/workspace/image.tar
-    - run:
-        name: push to dockerhub
-        command: |
-          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/push_docker.sh
-          bash push_docker.sh  
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: docker load -i /tmp/workspace/image.tar
+      - run:
+          name: push to dockerhub
+          command: |
+            wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/push_docker.sh
+            bash push_docker.sh
 
 workflows:
   build-test-deploy:
     jobs:
-    - build:
-        filters:
-          tags:
-            only: /.*/
-    - test:
-        requires:
-        - build
-        matrix:
-          parameters:
-            dataset: ['1', '2']
-        filters:
-          tags:
-            only: /.*/
-    - test_advanced:
-        requires:
-        - build
-        matrix:
-          parameters:
-            dataset: ['1', '2']
-        filters:
-          tags:
-            only: /.*/
-    - deployment:
-        requires:
-        - test
-        - test_advanced
-        filters:
-          tags:
-            only: /.*/
-# VS Code Extension Version: 1.5.1
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - test:
+          requires:
+            - build
+          matrix:
+            parameters:
+              dataset: ["1", "2"]
+          filters:
+            tags:
+              only: /.*/
+      - test_advanced:
+          requires:
+            - build
+          matrix:
+            parameters:
+              dataset: ["1", "2"]
+          filters:
+            tags:
+              only: /.*/
+      - deploy:
+          requires:
+            - test
+            - test_advanced
+          filters:
+            tags:
+              only: /.*/
