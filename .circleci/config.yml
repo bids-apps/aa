@@ -194,6 +194,8 @@ workflows:
           tags:
             only: /.*/
     - deploy:
+        context:
+        - dockerhub
         requires:
         - test
         - test_advanced
