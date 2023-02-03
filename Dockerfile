@@ -11,11 +11,11 @@ RUN apt-get update -qq && apt-get install -q -y --no-install-recommends \
     mkdir /opt/bin /opt/Download
 
 # FSL
-RUN wget -qO- http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.9-centos5_64.tar.gz | tar --no-same-owner -xzv -C /opt
+RUN wget -qO- http://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-6.0.5.2-centos7_64.tar.gz | tar --no-same-owner -xzv -C /opt
 COPY fsl_csh /opt/bin/fsl_csh
 
 #FreeSurfer
-RUN wget -qO- https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1.tar.gz | tar zxv --no-same-owner -C /opt \
+RUN wget -qO- https://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.3.2/freesurfer-linux-centos7_x86_64-7.3.2.tar.gz | tar zxv --no-same-owner -C /opt \
     --exclude='freesurfer/trctrain' \
     --exclude='freesurfer/subjects/fsaverage_sym' \
     --exclude='freesurfer/subjects/fsaverage3' \
