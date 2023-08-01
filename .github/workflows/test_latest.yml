@@ -27,17 +27,6 @@ jobs:
     - name: pull docker image
       run: docker pull bids/aa
 
-    - name: print version
-      run: |
-        docker run -t --rm --read-only \
-        --tmpfs /tmp \
-        --tmpfs /var/tmp \
-          bids/aa --help
-        docker run -t --rm --read-only \
-          --tmpfs /tmp \
-          --tmpfs /var/tmp \
-            bids/aa --version
-
     - name: get data
       run: |
         wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/utils/get_data_from_osf.sh
