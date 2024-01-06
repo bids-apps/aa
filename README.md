@@ -1,4 +1,7 @@
-## aa
+## 🚧 aa 🚧
+(Not maintained any more. A new app (based on [reproa](https://github.com/reprostat/reproanalysis)) is coming. Stay tuned!)
+
+### Description
 BIDS App containing an instance of the **Automatic Analysis**.
 
 Automatic Analysis software was originally developed by Dr Rhodri Cusack
